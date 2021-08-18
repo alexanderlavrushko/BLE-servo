@@ -1,12 +1,12 @@
-PROJECT_NAME     := ble_app_template_pca10028_s130
-TARGETS          := nrf51422_xxac
+PROJECT_NAME     := servo_nrf51_s130
+TARGETS          := nrf51822_xxaa
 OUTPUT_DIRECTORY := _build
 
-SDK_ROOT := ../../../../../..
+SDK_ROOT := $(HOME)/Downloads/nRF5_SDK_12.3.0_d7731ad
 PROJ_DIR := ../../..
 
-$(OUTPUT_DIRECTORY)/nrf51422_xxac.out: \
-  LINKER_SCRIPT  := ble_app_template_gcc_nrf51.ld
+$(OUTPUT_DIRECTORY)/nrf51822_xxaa.out: \
+  LINKER_SCRIPT  := servo_gcc_nrf51.ld
 
 # Source files common to all targets
 SRC_FILES += \
@@ -173,7 +173,7 @@ CFLAGS += -DNRF51
 CFLAGS += -DS130
 CFLAGS += -DBLE_STACK_SUPPORT_REQD
 CFLAGS += -DSWI_DISABLE0
-CFLAGS += -DNRF51422
+CFLAGS += -DNRF51822
 CFLAGS += -DNRF_SD_BLE_API_VERSION=2
 CFLAGS += -mcpu=cortex-m0
 CFLAGS += -mthumb -mabi=aapcs
@@ -194,7 +194,7 @@ ASMFLAGS += -DNRF51
 ASMFLAGS += -DS130
 ASMFLAGS += -DBLE_STACK_SUPPORT_REQD
 ASMFLAGS += -DSWI_DISABLE0
-ASMFLAGS += -DNRF51422
+ASMFLAGS += -DNRF51822
 ASMFLAGS += -DNRF_SD_BLE_API_VERSION=2
 
 # Linker flags
@@ -209,12 +209,12 @@ LDFLAGS += --specs=nano.specs -lc -lnosys
 .PHONY: $(TARGETS) default all clean help flash flash_softdevice
 
 # Default target - first one defined
-default: nrf51422_xxac
+default: nrf51822_xxaa
 
 # Print all targets that can be built
 help:
 	@echo following targets are available:
-	@echo 	nrf51422_xxac
+	@echo 	nrf51822_xxaa
 
 TEMPLATE_PATH := $(SDK_ROOT)/components/toolchain/gcc
 
@@ -223,7 +223,7 @@ include $(TEMPLATE_PATH)/Makefile.common
 $(foreach target, $(TARGETS), $(call define_target, $(target)))
 
 # Flash the program
-flash: $(OUTPUT_DIRECTORY)/nrf51422_xxac.hex
+flash: $(OUTPUT_DIRECTORY)/nrf51822_xxaa.hex
 	@echo Flashing: $<
 	nrfjprog --program $< -f nrf51 --sectorerase
 	nrfjprog --reset -f nrf51
