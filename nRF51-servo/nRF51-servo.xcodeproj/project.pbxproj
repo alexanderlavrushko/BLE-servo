@@ -1,0 +1,83 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 50;
+	objects = {
+
+/* Begin PBXFileReference section */
+		AB0A846326CDE1980001D245 /* ble_service_servo.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ble_service_servo.h; sourceTree = "<group>"; };
+		AB0A846426CDE1980001D245 /* ble_service_servo.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = ble_service_servo.c; sourceTree = "<group>"; };
+		AB0A846526CDE1980001D245 /* main.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = main.c; sourceTree = "<group>"; };
+		AB0A846626CDE1A10001D245 /* Makefile */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.make; name = Makefile; path = target_nrf51822_xxaa/s130/armgcc/Makefile; sourceTree = "<group>"; };
+		AB0A846726CDE1A10001D245 /* servo_gcc_nrf51.ld */ = {isa = PBXFileReference; lastKnownFileType = text; name = servo_gcc_nrf51.ld; path = target_nrf51822_xxaa/s130/armgcc/servo_gcc_nrf51.ld; sourceTree = "<group>"; };
+		AB0A846826CDE1A80001D245 /* sdk_config.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = sdk_config.h; path = target_nrf51822_xxaa/s130/config/sdk_config.h; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXGroup section */
+		AB0A845C26CDE17E0001D245 = {
+			isa = PBXGroup;
+			children = (
+				AB0A846426CDE1980001D245 /* ble_service_servo.c */,
+				AB0A846326CDE1980001D245 /* ble_service_servo.h */,
+				AB0A846526CDE1980001D245 /* main.c */,
+				AB0A846626CDE1A10001D245 /* Makefile */,
+				AB0A846726CDE1A10001D245 /* servo_gcc_nrf51.ld */,
+				AB0A846826CDE1A80001D245 /* sdk_config.h */,
+			);
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXProject section */
+		AB0A845D26CDE17E0001D245 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 1240;
+			};
+			buildConfigurationList = AB0A846026CDE17E0001D245 /* Build configuration list for PBXProject "nRF51-servo" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = AB0A845C26CDE17E0001D245;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+			);
+		};
+/* End PBXProject section */
+
+/* Begin XCBuildConfiguration section */
+		AB0A846126CDE17E0001D245 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+			};
+			name = Debug;
+		};
+		AB0A846226CDE17E0001D245 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		AB0A846026CDE17E0001D245 /* Build configuration list for PBXProject "nRF51-servo" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				AB0A846126CDE17E0001D245 /* Debug */,
+				AB0A846226CDE17E0001D245 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = AB0A845D26CDE17E0001D245 /* Project object */;
+}
