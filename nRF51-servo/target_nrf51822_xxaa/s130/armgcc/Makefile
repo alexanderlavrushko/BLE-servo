@@ -34,6 +34,7 @@ SRC_FILES += \
   $(SDK_ROOT)/components/libraries/bsp/bsp_btn_ble.c \
   $(SDK_ROOT)/components/libraries/bsp/bsp_nfc.c \
   $(PROJ_DIR)/main.c \
+  $(PROJ_DIR)/ble_service_servo.c \
   $(SDK_ROOT)/external/segger_rtt/RTT_Syscalls_GCC.c \
   $(SDK_ROOT)/external/segger_rtt/SEGGER_RTT.c \
   $(SDK_ROOT)/external/segger_rtt/SEGGER_RTT_printf.c \
@@ -57,6 +58,9 @@ SRC_FILES += \
   $(SDK_ROOT)/components/toolchain/gcc/gcc_startup_nrf51.S \
   $(SDK_ROOT)/components/toolchain/system_nrf51.c \
   $(SDK_ROOT)/components/softdevice/common/softdevice_handler/softdevice_handler.c \
+  $(SDK_ROOT)/components/libraries/pwm/app_pwm.c \
+  $(SDK_ROOT)/components/drivers_nrf/timer/nrf_drv_timer.c \
+  $(SDK_ROOT)/components/drivers_nrf/ppi/nrf_drv_ppi.c \
 
 # Include folders common to all targets
 INC_FOLDERS += \
@@ -222,6 +226,10 @@ include $(TEMPLATE_PATH)/Makefile.common
 
 $(foreach target, $(TARGETS), $(call define_target, $(target)))
 
+# ==========
+# Flash with nrfjprog
+# ==========
+
 # Flash the program
 flash: $(OUTPUT_DIRECTORY)/nrf51822_xxaa.hex
 	@echo Flashing: $<
@@ -236,3 +244,17 @@ flash_softdevice:
 
 erase:
 	nrfjprog --eraseall -f nrf52
+
+# ==========
+# Flash with STLink V2
+# ==========
+
+# Flash the program
+st_flash: $(OUTPUT_DIRECTORY)/nrf51822_xxaa.hex
+	@echo Flashing: $<
+	openocd -d2 -f interface/stlink-v2.cfg -c "transport select hla_swd; set WORKAREASIZE 0x4000;" -f target/nrf51.cfg -c "program {{$<}} verify reset; shutdown;"
+
+# Flash softdevice
+st_flash_softdevice:
+	@echo Flashing: s130_nrf51_2.0.1_softdevice.hex
+	openocd -d2 -f interface/stlink-v2.cfg -c "transport select hla_swd; set WORKAREASIZE 0x4000;" -f target/nrf51.cfg -c "program {{$(SDK_ROOT)/components/softdevice/s130/hex/s130_nrf51_2.0.1_softdevice.hex}} verify reset; shutdown;"
