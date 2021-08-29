@@ -69,8 +69,9 @@
 
 #define DEAD_BEEF                       0xDEADBEEF                                  /**< Value used as error code on stack dump, can be used to identify stack location on stack unwind. */
 
-#define PIN_SERVO1 30
-#define PIN_SERVO2 3
+#define PIN_SERVO1 0
+#define PIN_SERVO2 30
+#define SERVO_COUNT 2
 
 static uint16_t m_conn_handle = BLE_CONN_HANDLE_INVALID;                            /**< Handle of the current connection. */
 
@@ -262,7 +263,8 @@ static void gap_params_init(void)
 
 static void pos_write_handler(ble_servo_t* p_servo, uint8_t data_len, const uint8_t* p_data)
 {
-    for (int channel_index = 0; channel_index < 2; ++channel_index)
+    const uint8_t channel_count = (data_len <= SERVO_COUNT ? data_len : SERVO_COUNT);
+    for (int channel_index = 0; channel_index < channel_count; ++channel_index)
     {
         uint32_t value = p_data[channel_index];
         uint32_t pwmTicks = m_pwmTicksMin + value * m_pwmTicksAmplitude / 255;
@@ -279,7 +281,7 @@ static void services_init(void)
     memset(&init, 0, sizeof(init));
 
     init.pos_write_handler = pos_write_handler;
-    init.channels_count = 2;
+    init.channels_count = SERVO_COUNT;
     init.pos_initial_data[0] = 127;
     init.pos_initial_data[1] = 127;
 
