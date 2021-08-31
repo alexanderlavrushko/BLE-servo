@@ -14,6 +14,8 @@ class ViewController: UIViewController {
     @IBOutlet weak var sliderServo1: UISlider!
     @IBOutlet weak var labelServo2: UILabel!
     @IBOutlet weak var sliderServo2: UISlider!
+    @IBOutlet weak var switchInvertServo1: UISwitch!
+    @IBOutlet weak var switchInvertServo2: UISwitch!
 
     private var servo: ServoModelProtocol!
 
@@ -30,15 +32,13 @@ class ViewController: UIViewController {
     }
 
     @IBAction func onChangeSliderServo1(_ sender: Any) {
-        let newValue = UInt8(sliderServo1.value)
-        servo.positions[0] = newValue
-        labelServo1.text = "\(newValue)"
+        servo.positions[0] = servoValue1
+        labelServo1.text = "\(servoValue1)"
     }
 
     @IBAction func onChangeSliderServo2(_ sender: Any) {
-        let newValue = UInt8(sliderServo2.value)
-        servo.positions[1] = newValue
-        labelServo2.text = "\(newValue)"
+        servo.positions[1] = servoValue2
+        labelServo2.text = "\(servoValue2)"
     }
 }
 
@@ -61,11 +61,8 @@ private extension ViewController {
                 return
             }
 
-            self.sliderServo1.value = Float(positions[0])
-            self.labelServo1.text = "\(positions[0])"
-
-            self.sliderServo2.value = Float(positions[1])
-            self.labelServo2.text = "\(positions[1])"
+            self.servoValue1 = positions[0]
+            self.servoValue2 = positions[1]
         }
     }
 
@@ -73,5 +70,33 @@ private extension ViewController {
         servo.onIsConnectedDidChange?(servo.isConnected)
         servo.onStateStrDidChange?(servo.stateStr)
         servo.onPositionsDidChange?(servo.positions)
+    }
+
+    var servoValue1: UInt8 {
+        get {
+            let value = UInt8(sliderServo1.value)
+            let invert = switchInvertServo1.isOn
+            return invert ? 255 - value : value
+        }
+        set {
+            let invert = switchInvertServo1.isOn
+            let value = invert ? 255 - newValue : newValue
+            sliderServo1.value = Float(value)
+            labelServo1.text = "\(value)"
+        }
+    }
+
+    var servoValue2: UInt8 {
+        get {
+            let value = UInt8(sliderServo2.value)
+            let invert = switchInvertServo2.isOn
+            return invert ? 255 - value : value
+        }
+        set {
+            let invert = switchInvertServo2.isOn
+            let value = invert ? 255 - newValue : newValue
+            sliderServo2.value = Float(value)
+            labelServo2.text = "\(value)"
+        }
     }
 }
