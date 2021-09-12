@@ -637,9 +637,16 @@ static void power_manage(void)
 
 static void servo_init(void)
 {
+    // all values in microseconds
+    const uint32_t SERVO_PWM_PERIOD = 20000;
+//    const uint32_t SERVO_SG90_MIN_PULSE = 544;
+//    const uint32_t SERVO_SG90_MAX_PULSE = 2400;
+    const uint32_t SERVO_MIN_PULSE = 1000;
+    const uint32_t SERVO_MAX_PULSE = 2000;
+
     ret_code_t err_code = 0;
 
-    app_pwm_config_t pwm1_cfg = APP_PWM_DEFAULT_CONFIG_2CH(20000L, PIN_SERVO1, PIN_SERVO2);
+    app_pwm_config_t pwm1_cfg = APP_PWM_DEFAULT_CONFIG_2CH(SERVO_PWM_PERIOD, PIN_SERVO1, PIN_SERVO2);
 
     // Switch the polarity
     pwm1_cfg.pin_polarity[0] = APP_PWM_POLARITY_ACTIVE_HIGH;
@@ -651,8 +658,8 @@ static void servo_init(void)
     app_pwm_enable(&PWM1);
     
     uint32_t totalTicks = app_pwm_cycle_ticks_get(&PWM1);
-    m_pwmTicksMin = totalTicks * 1000 / 20000;
-    uint32_t pwmTicksMax = totalTicks * 2000 / 20000;
+    m_pwmTicksMin = totalTicks * SERVO_MIN_PULSE / SERVO_PWM_PERIOD;
+    uint32_t pwmTicksMax = totalTicks * SERVO_MAX_PULSE / SERVO_PWM_PERIOD;
     m_pwmTicksAmplitude = pwmTicksMax - m_pwmTicksMin;
 }
 
