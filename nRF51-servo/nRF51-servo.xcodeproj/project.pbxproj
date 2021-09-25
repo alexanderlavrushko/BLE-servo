@@ -13,12 +13,16 @@
 		AB0A846626CDE1A10001D245 /* Makefile */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.make; name = Makefile; path = target_nrf51822_xxaa/s130/armgcc/Makefile; sourceTree = "<group>"; };
 		AB0A846726CDE1A10001D245 /* servo_gcc_nrf51.ld */ = {isa = PBXFileReference; lastKnownFileType = text; name = servo_gcc_nrf51.ld; path = target_nrf51822_xxaa/s130/armgcc/servo_gcc_nrf51.ld; sourceTree = "<group>"; };
 		AB0A846826CDE1A80001D245 /* sdk_config.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = sdk_config.h; path = target_nrf51822_xxaa/s130/config/sdk_config.h; sourceTree = "<group>"; };
+		ABC96ABB271B79FB002C6798 /* servo_control_pwm.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = servo_control_pwm.c; sourceTree = "<group>"; };
+		ABC96ABC271B79FB002C6798 /* servo_control_pwm.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = servo_control_pwm.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXGroup section */
 		AB0A845C26CDE17E0001D245 = {
 			isa = PBXGroup;
 			children = (
+				ABC96ABB271B79FB002C6798 /* servo_control_pwm.c */,
+				ABC96ABC271B79FB002C6798 /* servo_control_pwm.h */,
 				AB0A846426CDE1980001D245 /* ble_service_servo.c */,
 				AB0A846326CDE1980001D245 /* ble_service_servo.h */,
 				AB0A846526CDE1980001D245 /* main.c */,

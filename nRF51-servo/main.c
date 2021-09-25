@@ -28,8 +28,8 @@
 #include "nrf_log.h"
 #include "nrf_log_ctrl.h"
 
-#include "app_pwm.h"
 #include "ble_service_servo.h"
+#include "servo_control_pwm.h"
 
 #define IS_SRVC_CHANGED_CHARACT_PRESENT 1                                           /**< Include or not the service_changed characteristic. if not enabled, the server's database cannot be changed for the lifetime of the device*/
 
@@ -69,21 +69,9 @@
 
 #define DEAD_BEEF                       0xDEADBEEF                                  /**< Value used as error code on stack dump, can be used to identify stack location on stack unwind. */
 
-#define PIN_SERVO1 0
-#define PIN_SERVO2 30
-#define SERVO_COUNT 2
-
 static uint16_t m_conn_handle = BLE_CONN_HANDLE_INVALID;                            /**< Handle of the current connection. */
 
 static ble_servo_t                      m_servo_service;                            /**< Servo Service instance. */
-
-APP_PWM_INSTANCE(PWM1,1);
-static uint32_t m_pwmTicksMin = 0;
-static uint32_t m_pwmTicksAmplitude = 10;
-
-void pwm_ready_callback(uint32_t pwm_id)    // PWM callback function
-{
-}
 
 static ble_uuid_t m_adv_uuids[] = {{SERVO_UUID_SERVICE, BLE_UUID_TYPE_VENDOR_BEGIN}};
 
@@ -267,8 +255,7 @@ static void pos_write_handler(ble_servo_t* p_servo, uint8_t data_len, const uint
     for (int channel_index = 0; channel_index < channel_count; ++channel_index)
     {
         uint32_t value = p_data[channel_index];
-        uint32_t pwmTicks = m_pwmTicksMin + value * m_pwmTicksAmplitude / 255;
-        while (app_pwm_channel_duty_ticks_set(&PWM1, channel_index, pwmTicks) == NRF_ERROR_BUSY);
+        servo_set_value(channel_index, value);
     }
 }
 
@@ -633,36 +620,6 @@ static void power_manage(void)
 
     APP_ERROR_CHECK(err_code);
 }
-
-
-static void servo_init(void)
-{
-    // all values in microseconds
-    const uint32_t SERVO_PWM_PERIOD = 20000;
-//    const uint32_t SERVO_SG90_MIN_PULSE = 544;
-//    const uint32_t SERVO_SG90_MAX_PULSE = 2400;
-    const uint32_t SERVO_MIN_PULSE = 1000;
-    const uint32_t SERVO_MAX_PULSE = 2000;
-
-    ret_code_t err_code = 0;
-
-    app_pwm_config_t pwm1_cfg = APP_PWM_DEFAULT_CONFIG_2CH(SERVO_PWM_PERIOD, PIN_SERVO1, PIN_SERVO2);
-
-    // Switch the polarity
-    pwm1_cfg.pin_polarity[0] = APP_PWM_POLARITY_ACTIVE_HIGH;
-    pwm1_cfg.pin_polarity[1] = APP_PWM_POLARITY_ACTIVE_HIGH;
-
-    // Initialize and enable PWM
-    err_code = app_pwm_init(&PWM1,&pwm1_cfg,pwm_ready_callback);
-    APP_ERROR_CHECK(err_code);
-    app_pwm_enable(&PWM1);
-    
-    uint32_t totalTicks = app_pwm_cycle_ticks_get(&PWM1);
-    m_pwmTicksMin = totalTicks * SERVO_MIN_PULSE / SERVO_PWM_PERIOD;
-    uint32_t pwmTicksMax = totalTicks * SERVO_MAX_PULSE / SERVO_PWM_PERIOD;
-    m_pwmTicksAmplitude = pwmTicksMax - m_pwmTicksMin;
-}
-
 
 /**@brief Function for starting advertising.
  */
