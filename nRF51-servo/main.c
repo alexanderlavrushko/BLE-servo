@@ -271,8 +271,8 @@ static void services_init(void)
 
     init.pos_write_handler = pos_write_handler;
     init.channels_count = SERVO_COUNT;
-    init.pos_initial_data[0] = 127;
-    init.pos_initial_data[1] = 127;
+    init.pos_initial_data[0] = SERVO_POSITION_CENTER;
+    init.pos_initial_data[1] = SERVO_POSITION_CENTER;
 
     err_code = ble_servo_init(&m_servo_service, &init);
     APP_ERROR_CHECK(err_code);
@@ -672,6 +672,7 @@ int main(void)
     conn_params_init();
 
     servo_init();
+    servo_set_center();
 
     // Start execution.
     NRF_LOG_INFO("Servo BLE started\r\n");

@@ -11,9 +11,11 @@ extern "C" {
 #define PIN_SERVO1 0
 #define PIN_SERVO2 30
 #define SERVO_COUNT 2
+#define SERVO_POSITION_CENTER 127
 
 void servo_init(void);
 void servo_set_value(uint8_t channel_index, uint8_t value);
+void servo_set_center(void);
 
 #ifdef __cplusplus
 }

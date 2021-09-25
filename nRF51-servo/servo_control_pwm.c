@@ -42,3 +42,9 @@ void servo_set_value(uint8_t channel_index, uint8_t value)
     uint32_t pwmTicks = m_pwmTicksMin + value * m_pwmTicksAmplitude / 255;
     while (app_pwm_channel_duty_ticks_set(&PWM1, channel_index, pwmTicks) == NRF_ERROR_BUSY);
 }
+
+void servo_set_center(void)
+{
+    servo_set_value(0, SERVO_POSITION_CENTER);
+    servo_set_value(1, SERVO_POSITION_CENTER);
+}
