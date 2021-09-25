@@ -69,6 +69,8 @@
 
 #define DEAD_BEEF                       0xDEADBEEF                                  /**< Value used as error code on stack dump, can be used to identify stack location on stack unwind. */
 
+#define PIN_ERASE_BONDS 21
+
 static uint16_t m_conn_handle = BLE_CONN_HANDLE_INVALID;                            /**< Handle of the current connection. */
 
 static ble_servo_t                      m_servo_service;                            /**< Servo Service instance. */
@@ -612,6 +614,20 @@ static void advertising_init(void)
 }
 
 
+/**@brief Function for initializing buttons.
+ *
+ * @param[out] p_erase_bonds  Will be true if the clear bonding button was pressed.
+ */
+static void buttons_init(bool * p_erase_bonds)
+{
+    nrf_gpio_cfg_input(PIN_ERASE_BONDS, NRF_GPIO_PIN_PULLUP);
+    if (p_erase_bonds)
+    {
+        *p_erase_bonds = (0 == nrf_gpio_pin_read(PIN_ERASE_BONDS));
+    }
+}
+
+
 /**@brief Function for the Power manager.
  */
 static void power_manage(void)
@@ -643,6 +659,7 @@ int main(void)
     APP_ERROR_CHECK(err_code);
 
     timers_init();
+    buttons_init(&erase_bonds);
     ble_stack_init();
     peer_manager_init(erase_bonds);
     if (erase_bonds == true)
