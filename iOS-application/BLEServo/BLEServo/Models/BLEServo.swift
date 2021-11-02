@@ -18,47 +18,23 @@ enum BLEConnectivityState: String {
     var humanReadableString: String { rawValue }
 }
 
-class BLEServo: NSObject, ServoModelProtocol {
+class BLEServo: NSObject, ServoModel, StatusModel {
+    // MARK: - ServoModel implementation
+    var statusModel: StatusModel { self }
+
+    var channels = [ServoChannelModel]() { didSet { onChannelsDidChange?(channels) } }
+    var onChannelsDidChange: (([ServoChannelModel]) -> Void)?
+
+    // MARK: - StatusModel implementation
     var isConnected: Bool { state == .connected }
     var onIsConnectedDidChange: ((Bool) -> Void)?
 
-    var stateStr: String { state.humanReadableString }
-    var onStateStrDidChange: ((String) -> Void)?
-
-    private(set) var channelCount = Int(0) {
-        didSet {
-            let newValue = channelCount
-            DispatchQueue.main.async {
-                self.onChannelCountDidChange?(newValue)
-            }
-        }
-    }
-    var onChannelCountDidChange: ((Int) -> Void)?
-
-    var positions = [UInt8]() {
-        didSet {
-            guard state == .connected else { return }
-            if positions.count != channelCount {
-                var newPositions = [UInt8]()
-                for i in 0..<channelCount {
-                    var currentPosition = UInt8(127)
-                    if i < positions.count {
-                        currentPosition = positions[i]
-                    } else if i < oldValue.count {
-                        currentPosition = oldValue[i]
-                    }
-                    newPositions[i] = currentPosition
-                }
-                positions = newPositions
-            }
-            guard positions != oldValue else { return }
-            writePositions(positions)
-        }
-    }
-    var onPositionsDidChange: (([UInt8]) -> Void)?
+    var statusStr: String { state.humanReadableString }
+    var onStatusStrDidChange: ((String) -> Void)?
 
     var onError: ((String) -> Void)?
 
+    // MARK: - Internal logic
     private(set) var state = BLEConnectivityState.bluetoothNotReady {
         didSet {
             guard state != oldValue else { return }
@@ -70,7 +46,7 @@ class BLEServo: NSObject, ServoModelProtocol {
                 if isConnected != wasConnected {
                     self.onIsConnectedDidChange?(isConnected)
                 }
-                self.onStateStrDidChange?(newValue.humanReadableString)
+                self.onStatusStrDidChange?(newValue.humanReadableString)
             }
         }
     }
@@ -100,6 +76,21 @@ class BLEServo: NSObject, ServoModelProtocol {
 private extension BLEServo {
     func log(_ message: String) {
         print("BLE_LOG: \(message)")
+    }
+
+    func createChannelsWithInitialPositions(_ positions: [UInt8]) {
+        var newChannels = [ServoChannelModelImpl]()
+        positions.forEach {
+            newChannels.append(ServoChannelModelImpl(
+                position: $0,
+                updateHandler: { [weak self] (_) in
+                    guard let self = self, self.isConnected else { return }
+                    let positions = self.channels.map { $0.position }
+                    self.writePositions(positions)
+                }
+            ))
+        }
+        channels = newChannels
     }
 
     func writePositions(_ value: [UInt8]) {
@@ -190,6 +181,7 @@ extension BLEServo: CBCentralManagerDelegate {
 
     func centralManager(_ central: CBCentralManager, didFailToConnect peripheral: CBPeripheral, error: Error?) {
         log("didFailToConnect, error = \(String(describing: error))")
+        onError?("didFailToConnect: \(String(describing: error))")
         connectedPeripheral = nil
         startScanning()
     }
@@ -231,17 +223,16 @@ extension BLEServo: CBPeripheralDelegate {
         }
 
         if characteristic.uuid == uuidCharPositions {
-            positions = [UInt8]()
+            var positions = [UInt8]()
             characteristic.value?.withUnsafeBytes({ rawBufferPtr in
                 positions += rawBufferPtr[0..<rawBufferPtr.count]
             })
 
+            createChannelsWithInitialPositions(positions)
+
             if state == .connectedPreparing {
                 handleConnectionSetupFinished()
             }
-
-            channelCount = positions.count
-            onPositionsDidChange?(positions)
         }
     }
 
