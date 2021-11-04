@@ -23,6 +23,7 @@
 		AB79D75F26D1AFFB0030CF8B /* BLEServo.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB79D75E26D1AFFB0030CF8B /* BLEServo.swift */; };
 		AB79D76126D1B2070030CF8B /* ServoModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB79D76026D1B2070030CF8B /* ServoModel.swift */; };
 		AB79D76326D1B9300030CF8B /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB79D76226D1B9300030CF8B /* Extensions.swift */; };
+		AB7AA8A9273366EB0050FA62 /* ValueAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB7AA8A8273366EA0050FA62 /* ValueAnimator.swift */; };
 		AB8F3DAC2730489900BF9E76 /* VehicleTwoAxisViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB8F3DAA2730489900BF9E76 /* VehicleTwoAxisViewController.swift */; };
 		AB8F3DAD2730489900BF9E76 /* VehicleTwoAxisViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = AB8F3DAB2730489900BF9E76 /* VehicleTwoAxisViewController.xib */; };
 		AB8F3DAF27306B1D00BF9E76 /* ServoControlCenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB8F3DAE27306B1D00BF9E76 /* ServoControlCenter.swift */; };
@@ -51,6 +52,7 @@
 		AB79D75E26D1AFFB0030CF8B /* BLEServo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BLEServo.swift; sourceTree = "<group>"; };
 		AB79D76026D1B2070030CF8B /* ServoModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServoModel.swift; sourceTree = "<group>"; };
 		AB79D76226D1B9300030CF8B /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		AB7AA8A8273366EA0050FA62 /* ValueAnimator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValueAnimator.swift; sourceTree = "<group>"; };
 		AB8F3DAA2730489900BF9E76 /* VehicleTwoAxisViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VehicleTwoAxisViewController.swift; sourceTree = "<group>"; };
 		AB8F3DAB2730489900BF9E76 /* VehicleTwoAxisViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = VehicleTwoAxisViewController.xib; sourceTree = "<group>"; };
 		AB8F3DAE27306B1D00BF9E76 /* ServoControlCenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServoControlCenter.swift; sourceTree = "<group>"; };
@@ -160,6 +162,7 @@
 			isa = PBXGroup;
 			children = (
 				AB597EB4272DC2E000777397 /* AxisConverter.swift */,
+				AB7AA8A8273366EA0050FA62 /* ValueAnimator.swift */,
 			);
 			path = Logic;
 			sourceTree = "<group>";
@@ -252,6 +255,7 @@
 				AB597EAF272DB09800777397 /* AxisView.swift in Sources */,
 				AB79D76326D1B9300030CF8B /* Extensions.swift in Sources */,
 				AB597EB1272DB21000777397 /* UIView+extension.swift in Sources */,
+				AB7AA8A9273366EB0050FA62 /* ValueAnimator.swift in Sources */,
 				AB597EB3272DB76500777397 /* AxisViewModel.swift in Sources */,
 				AB79D74F26D1AE860030CF8B /* MainViewController.swift in Sources */,
 				AB8F3DC12730B4AA00BF9E76 /* UIViewWithNib.swift in Sources */,
