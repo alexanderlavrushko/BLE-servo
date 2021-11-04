@@ -23,7 +23,7 @@ class AxisViewModelImpl: AxisViewModel {
     var value: Float {
         get { valueInternal }
         set {
-            stopAnimation()
+            animator.stopAnimation()
             guard newValue != value else { return }
             valueInternal = newValue
             updateDisplayValue()
@@ -45,8 +45,8 @@ class AxisViewModelImpl: AxisViewModel {
     // MARK: - Internal logic
     private let model: ServoChannelModel
     private let converter: AxisConverter
+    private let animator = ValueAnimator()
     private var valueInternal = Float(0)
-    private var timer: Timer?
 
     init(model: ServoChannelModel, axisName: String, config: AxisOutputConfig) {
         self.model = model
@@ -73,44 +73,13 @@ private extension AxisViewModelImpl {
         model.position = converter.axisToServo(value)
     }
 
-    func stopAnimation() {
-        timer?.invalidate()
-        timer = nil
-    }
-
     func animateToCenter() {
-        let interval = TimeInterval(1.0 / 60)
-        timer = Timer.scheduledTimer(withTimeInterval: interval, repeats: true) { [weak self] (timer) in
-            let wantedValue = Float(0)
-            guard let self = self else {
-                timer.invalidate()
-                return
-            }
-            guard self.value != wantedValue else {
-                timer.invalidate()
-                self.stopAnimation()
-                return
-            }
-            let difference = wantedValue - self.value
-            let direction = Double(difference > 0 ? 1 : -1)
-            let durationFromCenterToMax = TimeInterval(1)
-            let deltaMove = Float(direction * interval / durationFromCenterToMax)
-
-            let newValue = { () -> Float in
-                if abs(deltaMove) < abs(difference) {
-                    return self.value + deltaMove
-                } else {
-                    return wantedValue
-                }
-            }()
-            self.valueInternal = newValue
+        animator.animate(from: value, to: 0, speed: 1) { [weak self] (currentValue) in
+            guard let self = self else { return }
+            self.valueInternal = currentValue
             self.onValueDidChange?(self.value)
             self.updateDisplayValue()
             self.writePosition()
-
-            if self.value == wantedValue {
-                timer.invalidate()
-            }
         }
     }
 }
