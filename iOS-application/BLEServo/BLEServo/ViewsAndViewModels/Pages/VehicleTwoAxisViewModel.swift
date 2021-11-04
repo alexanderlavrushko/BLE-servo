@@ -55,25 +55,15 @@ private extension VehicleTwoAxisViewModelImpl {
     }
 
     func connectToChannels() {
-        setupDriving(getChannel(index: 0), config: drivingConfig)
-        setupSteering(getChannel(index: 1), config: steeringConfig)
-    }
-
-    func setupDriving(_ channel: ServoChannelModel, config: AxisOutputConfig) {
-        let name = "Driving\(nameSuffixForChannel(channel))"
         drivingAxis = AxisViewModelImpl(
-            model: channel,
-            axisName: name,
-            config: AxisOutputConfig.defaultConfig
+            model: getChannel(index: 0),
+            axisName: "Driving",
+            config: drivingConfig
         )
-    }
-
-    func setupSteering(_ channel: ServoChannelModel, config: AxisOutputConfig) {
-        let name = "Steering\(nameSuffixForChannel(channel))"
         steeringAxis = AxisViewModelImpl(
-            model: channel,
-            axisName: name,
-            config: AxisOutputConfig(center: 112, maxNegative: 195, maxPositive: 16)
+            model: getChannel(index: 1),
+            axisName: "Steering",
+            config: steeringConfig
         )
     }
 
@@ -82,12 +72,5 @@ private extension VehicleTwoAxisViewModelImpl {
             return model.channels[index]
         }
         return ServoChannelModelStub()
-    }
-
-    func nameSuffixForChannel(_ channel: ServoChannelModel) -> String {
-        if channel is ServoChannelModelStub {
-            return " (disconnected)"
-        }
-        return ""
     }
 }
