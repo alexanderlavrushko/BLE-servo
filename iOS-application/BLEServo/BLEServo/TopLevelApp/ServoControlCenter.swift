@@ -27,9 +27,19 @@ class ServoControlCenter {
     // MARK: - Internal logic
     private let servoModel: ServoModel
 
-    func takeControlWithViewController() -> UIViewController {
+    func takeControlWithAxis() -> UIViewController {
         let vc = VehicleTwoAxisViewController.loadFromNib()
         vc.viewModel = VehicleTwoAxisViewModelImpl(
+            model: servoModel,
+            driving: AxisOutputConfig.defaultConfig,
+            steering: AxisOutputConfig(center: 112, maxNegative: 196, maxPositive: 18)
+        )
+        return vc
+    }
+
+    func takeControlWithButtons() -> UIViewController {
+        let vc = VehicleButtonsViewController.loadFromNib()
+        vc.viewModel = VehicleButtonsViewModelImpl(
             model: servoModel,
             driving: AxisOutputConfig.defaultConfig,
             steering: AxisOutputConfig(center: 112, maxNegative: 196, maxPositive: 18)

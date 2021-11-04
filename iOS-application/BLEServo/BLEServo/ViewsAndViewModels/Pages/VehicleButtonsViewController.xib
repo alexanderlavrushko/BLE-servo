@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="19162" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19144"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="VehicleButtonsViewController" customModule="BLEServo" customModuleProvider="target">
+            <connections>
+                <outlet property="axisViewDriving" destination="s0J-K2-DMS" id="aF0-3s-J8V"/>
+                <outlet property="axisViewSteering" destination="yYs-wF-4fc" id="RXc-41-Xbb"/>
+                <outlet property="statusView" destination="KaG-6x-Oqr" id="HFF-ku-RmZ"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KaG-6x-Oqr" customClass="StatusView" customModule="BLEServo" customModuleProvider="target">
+                    <rect key="frame" x="20" y="54" width="374" height="70"/>
+                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="70" id="X4L-L5-IxZ"/>
+                    </constraints>
+                </view>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="s0J-K2-DMS" customClass="ButtonsVAxisView" customModule="BLEServo" customModuleProvider="target">
+                    <rect key="frame" x="50" y="517" width="83" height="166"/>
+                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    <constraints>
+                        <constraint firstAttribute="width" secondItem="s0J-K2-DMS" secondAttribute="height" multiplier="1:2" id="MOe-Ef-HHQ"/>
+                        <constraint firstAttribute="width" relation="lessThanOrEqual" constant="120" id="l6e-gZ-HhM"/>
+                    </constraints>
+                </view>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yYs-wF-4fc" customClass="ButtonsHAxisView" customModule="BLEServo" customModuleProvider="target">
+                    <rect key="frame" x="198.5" y="600" width="165.5" height="83"/>
+                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    <constraints>
+                        <constraint firstAttribute="height" relation="lessThanOrEqual" constant="120" id="d0Y-uS-p0a"/>
+                        <constraint firstAttribute="width" secondItem="yYs-wF-4fc" secondAttribute="height" multiplier="2:1" id="nKe-hb-PQj"/>
+                    </constraints>
+                </view>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="e78-2R-srE">
+                    <rect key="frame" x="20" y="683" width="374" height="179"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstAttribute="height" relation="lessThanOrEqual" constant="300" id="GA6-AE-JhK"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
+            <color key="backgroundColor" systemColor="systemGroupedBackgroundColor"/>
+            <constraints>
+                <constraint firstItem="KaG-6x-Oqr" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="10" id="6ZQ-Og-7Ju"/>
+                <constraint firstItem="s0J-K2-DMS" firstAttribute="top" relation="greaterThanOrEqual" secondItem="KaG-6x-Oqr" secondAttribute="bottom" constant="10" id="7D7-Kv-kM1"/>
+                <constraint firstItem="e78-2R-srE" firstAttribute="height" secondItem="i5M-Pr-FkT" secondAttribute="height" multiplier="0.2" id="KTF-8m-ksQ"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="KaG-6x-Oqr" secondAttribute="trailing" constant="20" id="LZr-dS-SXe"/>
+                <constraint firstItem="s0J-K2-DMS" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="50" id="SP5-S8-Quf"/>
+                <constraint firstItem="yYs-wF-4fc" firstAttribute="width" secondItem="s0J-K2-DMS" secondAttribute="height" id="XYI-dI-wuL"/>
+                <constraint firstItem="KaG-6x-Oqr" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="20" id="aN1-yY-wpH"/>
+                <constraint firstItem="s0J-K2-DMS" firstAttribute="bottom" secondItem="yYs-wF-4fc" secondAttribute="bottom" id="c7n-78-uth"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="yYs-wF-4fc" secondAttribute="trailing" constant="50" id="dS1-Nh-jpJ"/>
+                <constraint firstItem="e78-2R-srE" firstAttribute="top" secondItem="s0J-K2-DMS" secondAttribute="bottom" id="hYJ-6j-6jD"/>
+                <constraint firstItem="s0J-K2-DMS" firstAttribute="height" secondItem="i5M-Pr-FkT" secondAttribute="width" multiplier="0.4" priority="900" id="mk8-2N-34t"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="e78-2R-srE" secondAttribute="trailing" constant="20" id="pTn-MC-pRz"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="e78-2R-srE" secondAttribute="bottom" id="v2r-hl-ad5"/>
+                <constraint firstItem="e78-2R-srE" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="20" id="veo-am-rHb"/>
+            </constraints>
+            <point key="canvasLocation" x="131.8840579710145" y="93.75"/>
+        </view>
+    </objects>
+    <designables>
+        <designable name="KaG-6x-Oqr">
+            <size key="intrinsicContentSize" width="374" height="47"/>
+        </designable>
+        <designable name="s0J-K2-DMS">
+            <size key="intrinsicContentSize" width="83" height="166"/>
+        </designable>
+        <designable name="yYs-wF-4fc">
+            <size key="intrinsicContentSize" width="165.5" height="83"/>
+        </designable>
+    </designables>
+    <resources>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemGroupedBackgroundColor">
+            <color red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+    </resources>
+</document>

@@ -1,32 +1,32 @@
 //
-//  VehicleTwoAxisViewController.swift
+//  VehicleButtonsViewController.swift
 //  BLEServo
 //
-//  Created by Alexander Lavrushko on 01/11/2021.
+//  Created by Alexander Lavrushko on 03/11/2021.
 //
 
 import UIKit
 
-class VehicleTwoAxisViewController: UIViewController {
+class VehicleButtonsViewController: UIViewController {
     // MARK: - Load from nib
     class private var nibName: String {
         NSStringFromClass(self).components(separatedBy: ".").last!
     }
 
-    class func loadFromNib() -> VehicleTwoAxisViewController {
-        VehicleTwoAxisViewController(nibName: nibName, bundle: Bundle(for: self))
+    class func loadFromNib() -> VehicleButtonsViewController {
+        VehicleButtonsViewController(nibName: nibName, bundle: Bundle(for: self))
     }
 
     // MARK: - Internal logic
     @IBOutlet weak var statusView: StatusView!
-    @IBOutlet weak var axisViewDriving: AxisView!
-    @IBOutlet weak var axisViewSteering: AxisView!
+    @IBOutlet weak var axisViewDriving: ButtonsVAxisView!
+    @IBOutlet weak var axisViewSteering: ButtonsHAxisView!
 
-    var viewModel: VehicleTwoAxisViewModel? { didSet { connectToViewModel() } }
+    var viewModel: VehicleButtonsViewModel? { didSet { connectToViewModel() } }
 
     func connectToViewModel() {
         statusView?.viewModel = viewModel?.statusViewModel
-        
+
         axisViewDriving?.viewModel = viewModel?.drivingViewModel
         viewModel?.onDrivingViewModelDidChange = { [weak self] (driving) in
             self?.axisViewDriving?.viewModel = driving

@@ -18,7 +18,7 @@ class MainViewController: UIViewController {
             return
         }
 
-        let childVC = center.takeControlWithViewController()
+        let childVC = center.takeControlWithButtons()
         addChild(childVC)
         view.addSubview(childVC.view)
         childVC.didMove(toParent: self)

@@ -31,7 +31,7 @@
                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2Fa-2w-CUc" customClass="StatusView" customModule="BLEServo" customModuleProvider="target">
-                    <rect key="frame" x="20" y="54" width="374" height="89"/>
+                    <rect key="frame" x="20" y="54" width="374" height="63"/>
                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                 </view>
             </subviews>
@@ -55,7 +55,7 @@
     </objects>
     <designables>
         <designable name="2Fa-2w-CUc">
-            <size key="intrinsicContentSize" width="374" height="89"/>
+            <size key="intrinsicContentSize" width="374" height="47"/>
         </designable>
         <designable name="KLv-66-WJu">
             <size key="intrinsicContentSize" width="207" height="112.5"/>

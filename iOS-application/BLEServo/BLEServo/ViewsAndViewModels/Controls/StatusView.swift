@@ -9,8 +9,12 @@ import UIKit
 
 @IBDesignable
 class StatusView: UIViewWithNib {
+    @IBOutlet weak var labelTitle: UILabel!
+    @IBOutlet weak var constraintTitleToView: NSLayoutConstraint!
+    @IBOutlet weak var backgroundView: UIView!
     @IBOutlet weak var labelStatus: UILabel!
     @IBOutlet weak var labelStatusColor: UIView!
+    @IBOutlet weak var constraintViewToError: NSLayoutConstraint!
     @IBOutlet weak var labelError: UILabel!
     @IBOutlet weak var buttonDismissError: UIButton!
 
@@ -19,11 +23,11 @@ class StatusView: UIViewWithNib {
     override var intrinsicContentSize: CGSize {
         let width = bounds.width
         let height = { () -> CGFloat in
-            if labelError.isHidden {
-                return labelError.frame.origin.y
-            } else {
-                return labelError.frame.origin.y + labelError.frame.height
+            var height = labelTitle.intrinsicContentSize.height + constraintTitleToView.constant + backgroundView.intrinsicContentSize.height
+            if !labelError.isHidden {
+                height += constraintViewToError.constant + labelError.intrinsicContentSize.height
             }
+            return height
         }()
         return CGSize(width: width, height: height)
     }

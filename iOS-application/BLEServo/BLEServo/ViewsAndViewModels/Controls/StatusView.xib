@@ -11,15 +11,19 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="StatusView" customModule="BLEServo" customModuleProvider="target">
             <connections>
+                <outlet property="backgroundView" destination="RyV-g6-NTY" id="YJT-BE-4Kw"/>
                 <outlet property="buttonDismissError" destination="2hs-wB-B17" id="r5b-o9-hLG"/>
+                <outlet property="constraintTitleToView" destination="ln7-X7-JOO" id="tAb-Xg-VWP"/>
+                <outlet property="constraintViewToError" destination="LKp-Qc-8Ac" id="WSp-V5-Tnm"/>
                 <outlet property="labelError" destination="gZc-rw-iNW" id="CKi-Wb-p0k"/>
                 <outlet property="labelStatus" destination="0ck-Ng-sx0" id="aGk-x8-QdP"/>
                 <outlet property="labelStatusColor" destination="MBQ-kE-cJs" id="MJG-bG-JUe"/>
+                <outlet property="labelTitle" destination="OUe-y2-abz" id="2HA-Fc-atH"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view contentMode="scaleToFill" id="iN0-l3-epB">
-            <rect key="frame" x="0.0" y="0.0" width="438" height="157"/>
+            <rect key="frame" x="0.0" y="0.0" width="438" height="189"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RyV-g6-NTY">
@@ -87,7 +91,6 @@
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
-                <constraint firstItem="2hs-wB-B17" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="gZc-rw-iNW" secondAttribute="trailing" id="26d-Wr-dTf"/>
                 <constraint firstItem="OUe-y2-abz" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="15" id="3Iw-0d-cjL"/>
                 <constraint firstItem="gZc-rw-iNW" firstAttribute="top" secondItem="RyV-g6-NTY" secondAttribute="bottom" constant="8" symbolic="YES" id="LKp-Qc-8Ac"/>
                 <constraint firstItem="gZc-rw-iNW" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="15" id="Q0Z-iC-hSh"/>
@@ -97,9 +100,10 @@
                 <constraint firstItem="2hs-wB-B17" firstAttribute="centerY" secondItem="gZc-rw-iNW" secondAttribute="centerY" id="iEr-Oo-tqb"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="2hs-wB-B17" secondAttribute="trailing" constant="15" id="iuI-S4-p5k"/>
                 <constraint firstItem="RyV-g6-NTY" firstAttribute="top" secondItem="OUe-y2-abz" secondAttribute="bottom" constant="4" id="ln7-X7-JOO"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="RyV-g6-NTY" secondAttribute="bottom" id="oA9-mY-6l7"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-            <point key="canvasLocation" x="149.27536231884059" y="-171.76339285714286"/>
+            <point key="canvasLocation" x="150.72463768115944" y="-155.02232142857142"/>
         </view>
     </objects>
     <resources>

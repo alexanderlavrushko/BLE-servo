@@ -23,6 +23,14 @@
 		AB79D75F26D1AFFB0030CF8B /* BLEServo.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB79D75E26D1AFFB0030CF8B /* BLEServo.swift */; };
 		AB79D76126D1B2070030CF8B /* ServoModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB79D76026D1B2070030CF8B /* ServoModel.swift */; };
 		AB79D76326D1B9300030CF8B /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB79D76226D1B9300030CF8B /* Extensions.swift */; };
+		AB7AA8982733211A0050FA62 /* ButtonsVAxisView.xib in Resources */ = {isa = PBXBuildFile; fileRef = AB7AA8972733211A0050FA62 /* ButtonsVAxisView.xib */; };
+		AB7AA89A273321920050FA62 /* ButtonsVAxisView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB7AA899273321920050FA62 /* ButtonsVAxisView.swift */; };
+		AB7AA89C27332A360050FA62 /* ButtonsAxisViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB7AA89B27332A360050FA62 /* ButtonsAxisViewModel.swift */; };
+		AB7AA89F27332F390050FA62 /* ButtonsHAxisView.xib in Resources */ = {isa = PBXBuildFile; fileRef = AB7AA89E27332F390050FA62 /* ButtonsHAxisView.xib */; };
+		AB7AA8A127332F4D0050FA62 /* ButtonsHAxisView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB7AA8A027332F4D0050FA62 /* ButtonsHAxisView.swift */; };
+		AB7AA8A427333E450050FA62 /* VehicleButtonsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB7AA8A227333E450050FA62 /* VehicleButtonsViewController.swift */; };
+		AB7AA8A527333E450050FA62 /* VehicleButtonsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = AB7AA8A327333E450050FA62 /* VehicleButtonsViewController.xib */; };
+		AB7AA8A7273341EC0050FA62 /* VehicleButtonsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB7AA8A6273341EC0050FA62 /* VehicleButtonsViewModel.swift */; };
 		AB7AA8A9273366EB0050FA62 /* ValueAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB7AA8A8273366EA0050FA62 /* ValueAnimator.swift */; };
 		AB8F3DAC2730489900BF9E76 /* VehicleTwoAxisViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB8F3DAA2730489900BF9E76 /* VehicleTwoAxisViewController.swift */; };
 		AB8F3DAD2730489900BF9E76 /* VehicleTwoAxisViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = AB8F3DAB2730489900BF9E76 /* VehicleTwoAxisViewController.xib */; };
@@ -52,6 +60,14 @@
 		AB79D75E26D1AFFB0030CF8B /* BLEServo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BLEServo.swift; sourceTree = "<group>"; };
 		AB79D76026D1B2070030CF8B /* ServoModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServoModel.swift; sourceTree = "<group>"; };
 		AB79D76226D1B9300030CF8B /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		AB7AA8972733211A0050FA62 /* ButtonsVAxisView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ButtonsVAxisView.xib; sourceTree = "<group>"; };
+		AB7AA899273321920050FA62 /* ButtonsVAxisView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonsVAxisView.swift; sourceTree = "<group>"; };
+		AB7AA89B27332A360050FA62 /* ButtonsAxisViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonsAxisViewModel.swift; sourceTree = "<group>"; };
+		AB7AA89E27332F390050FA62 /* ButtonsHAxisView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ButtonsHAxisView.xib; sourceTree = "<group>"; };
+		AB7AA8A027332F4D0050FA62 /* ButtonsHAxisView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonsHAxisView.swift; sourceTree = "<group>"; };
+		AB7AA8A227333E450050FA62 /* VehicleButtonsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VehicleButtonsViewController.swift; sourceTree = "<group>"; };
+		AB7AA8A327333E450050FA62 /* VehicleButtonsViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = VehicleButtonsViewController.xib; sourceTree = "<group>"; };
+		AB7AA8A6273341EC0050FA62 /* VehicleButtonsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VehicleButtonsViewModel.swift; sourceTree = "<group>"; };
 		AB7AA8A8273366EA0050FA62 /* ValueAnimator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValueAnimator.swift; sourceTree = "<group>"; };
 		AB8F3DAA2730489900BF9E76 /* VehicleTwoAxisViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VehicleTwoAxisViewController.swift; sourceTree = "<group>"; };
 		AB8F3DAB2730489900BF9E76 /* VehicleTwoAxisViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = VehicleTwoAxisViewController.xib; sourceTree = "<group>"; };
@@ -130,6 +146,11 @@
 				AB8F3DB02730852000BF9E76 /* StatusView.xib */,
 				AB8F3DB22730854A00BF9E76 /* StatusView.swift */,
 				AB8F3DB42730909700BF9E76 /* StatusViewModel.swift */,
+				AB7AA8972733211A0050FA62 /* ButtonsVAxisView.xib */,
+				AB7AA899273321920050FA62 /* ButtonsVAxisView.swift */,
+				AB7AA89E27332F390050FA62 /* ButtonsHAxisView.xib */,
+				AB7AA8A027332F4D0050FA62 /* ButtonsHAxisView.swift */,
+				AB7AA89B27332A360050FA62 /* ButtonsAxisViewModel.swift */,
 			);
 			path = Controls;
 			sourceTree = "<group>";
@@ -140,6 +161,9 @@
 				AB8F3DAB2730489900BF9E76 /* VehicleTwoAxisViewController.xib */,
 				AB8F3DAA2730489900BF9E76 /* VehicleTwoAxisViewController.swift */,
 				AB597EB6272F1E7E00777397 /* VehicleTwoAxisViewModel.swift */,
+				AB7AA8A327333E450050FA62 /* VehicleButtonsViewController.xib */,
+				AB7AA8A227333E450050FA62 /* VehicleButtonsViewController.swift */,
+				AB7AA8A6273341EC0050FA62 /* VehicleButtonsViewModel.swift */,
 			);
 			path = Pages;
 			sourceTree = "<group>";
@@ -235,11 +259,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				AB8F3DB12730852000BF9E76 /* StatusView.xib in Resources */,
+				AB7AA8A527333E450050FA62 /* VehicleButtonsViewController.xib in Resources */,
 				AB8F3DAD2730489900BF9E76 /* VehicleTwoAxisViewController.xib in Resources */,
 				AB79D75726D1AE870030CF8B /* LaunchScreen.storyboard in Resources */,
 				AB597EAD272DAD9B00777397 /* AxisView.xib in Resources */,
+				AB7AA89F27332F390050FA62 /* ButtonsHAxisView.xib in Resources */,
 				AB79D75426D1AE870030CF8B /* Assets.xcassets in Resources */,
 				AB79D75226D1AE860030CF8B /* Main.storyboard in Resources */,
+				AB7AA8982733211A0050FA62 /* ButtonsVAxisView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -254,6 +281,7 @@
 				AB79D75F26D1AFFB0030CF8B /* BLEServo.swift in Sources */,
 				AB597EAF272DB09800777397 /* AxisView.swift in Sources */,
 				AB79D76326D1B9300030CF8B /* Extensions.swift in Sources */,
+				AB7AA8A127332F4D0050FA62 /* ButtonsHAxisView.swift in Sources */,
 				AB597EB1272DB21000777397 /* UIView+extension.swift in Sources */,
 				AB7AA8A9273366EB0050FA62 /* ValueAnimator.swift in Sources */,
 				AB597EB3272DB76500777397 /* AxisViewModel.swift in Sources */,
@@ -262,12 +290,16 @@
 				AB8F3DAF27306B1D00BF9E76 /* ServoControlCenter.swift in Sources */,
 				AB79D74B26D1AE860030CF8B /* AppDelegate.swift in Sources */,
 				AB8F3DAC2730489900BF9E76 /* VehicleTwoAxisViewController.swift in Sources */,
+				AB7AA89C27332A360050FA62 /* ButtonsAxisViewModel.swift in Sources */,
 				AB8F3DB32730854A00BF9E76 /* StatusView.swift in Sources */,
 				AB79D74D26D1AE860030CF8B /* SceneDelegate.swift in Sources */,
 				AB597EB5272DC2E000777397 /* AxisConverter.swift in Sources */,
+				AB7AA89A273321920050FA62 /* ButtonsVAxisView.swift in Sources */,
 				AB79D76126D1B2070030CF8B /* ServoModel.swift in Sources */,
 				AB597EB7272F1E7E00777397 /* VehicleTwoAxisViewModel.swift in Sources */,
+				AB7AA8A7273341EC0050FA62 /* VehicleButtonsViewModel.swift in Sources */,
 				AB597EB9272F3ABE00777397 /* ServoChannelModel.swift in Sources */,
+				AB7AA8A427333E450050FA62 /* VehicleButtonsViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
