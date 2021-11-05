@@ -10,6 +10,7 @@ import UIKit
 @IBDesignable
 class ButtonsVAxisView: UIViewWithNib {
     @IBOutlet weak var stackViewButtons: UIStackView!
+    @IBOutlet weak var axisValueView: AxisRenderValueView!
 
     var viewModel: ButtonsAxisViewModel? { didSet { connectToViewModel() } }
 
@@ -36,5 +37,13 @@ class ButtonsVAxisView: UIViewWithNib {
 
 private extension ButtonsVAxisView {
     func connectToViewModel() {
+        guard let viewModel = viewModel else {
+            axisValueView.axisValue = 0
+            return
+        }
+        viewModel.onValueDidChange = { [weak self] (newValue) in
+            self?.axisValueView.axisValue = newValue
+        }
+        axisValueView.axisValue = viewModel.value
     }
 }

@@ -10,16 +10,17 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ButtonsVAxisView" customModule="BLEServo" customModuleProvider="target">
             <connections>
+                <outlet property="axisValueView" destination="WFc-iN-SBF" id="Fy7-SA-8bc"/>
                 <outlet property="stackViewButtons" destination="mxM-qM-uEB" id="mJi-2T-ohm"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view contentMode="scaleToFill" id="iN0-l3-epB">
-            <rect key="frame" x="0.0" y="0.0" width="153" height="386"/>
+            <rect key="frame" x="0.0" y="0.0" width="257" height="386"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="mxM-qM-uEB">
-                    <rect key="frame" x="-9" y="44" width="171" height="342"/>
+                    <rect key="frame" x="43" y="44" width="171" height="342"/>
                     <subviews>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kFO-gw-AKP">
                             <rect key="frame" x="0.0" y="0.5" width="171" height="170"/>
@@ -49,10 +50,20 @@
                         </button>
                     </subviews>
                 </stackView>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WFc-iN-SBF" customClass="AxisRenderValueView" customModule="BLEServo" customModuleProvider="target">
+                    <rect key="frame" x="222" y="44" width="8" height="342"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="8" id="JP0-Ke-To8"/>
+                    </constraints>
+                </view>
             </subviews>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
+                <constraint firstItem="WFc-iN-SBF" firstAttribute="leading" secondItem="mxM-qM-uEB" secondAttribute="trailing" constant="8" symbolic="YES" id="PI3-D9-fQC"/>
+                <constraint firstItem="WFc-iN-SBF" firstAttribute="bottom" secondItem="mxM-qM-uEB" secondAttribute="bottom" id="Pcc-Zp-gfi"/>
+                <constraint firstItem="WFc-iN-SBF" firstAttribute="top" secondItem="mxM-qM-uEB" secondAttribute="top" id="VRu-FH-DxB"/>
                 <constraint firstItem="mxM-qM-uEB" firstAttribute="centerX" secondItem="vUN-kp-3ea" secondAttribute="centerX" id="Vtv-t9-615"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="mxM-qM-uEB" secondAttribute="bottom" id="eb1-SE-Qf2"/>
                 <constraint firstItem="mxM-qM-uEB" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" id="qbt-WG-cus"/>
@@ -60,7 +71,7 @@
             <nil key="simulatedTopBarMetrics"/>
             <nil key="simulatedBottomBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-            <point key="canvasLocation" x="-144.20289855072465" y="-96.428571428571431"/>
+            <point key="canvasLocation" x="-68.840579710144937" y="-96.428571428571431"/>
         </view>
     </objects>
     <resources>

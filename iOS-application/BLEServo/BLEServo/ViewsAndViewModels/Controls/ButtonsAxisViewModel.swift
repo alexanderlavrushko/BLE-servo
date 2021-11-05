@@ -8,6 +8,8 @@
 import Foundation
 
 protocol ButtonsAxisViewModel: AnyObject {
+    var value: Float { get }
+    var onValueDidChange: ((Float) -> Void)? { get set }
     func positiveButtonDidPress()
     func positiveButtonDidRelease()
     func negativeButtonDidPress()
@@ -16,6 +18,15 @@ protocol ButtonsAxisViewModel: AnyObject {
 
 class ButtonsAxisViewModelImpl: ButtonsAxisViewModel {
     // MARK: - ButtonsAxisViewModel implementation
+    private(set) var value: Float {
+        didSet {
+            guard value != oldValue else { return }
+            onValueDidChange?(value)
+            model.position = converter.axisToServo(value)
+        }
+    }
+    var onValueDidChange: ((Float) -> Void)?
+
     func positiveButtonDidPress() {
         if value < 0 {
             value = 0 // if direction is changed, react quickly
@@ -43,13 +54,6 @@ class ButtonsAxisViewModelImpl: ButtonsAxisViewModel {
     private let converter: AxisConverter
     private let animator = ValueAnimator()
     private let animationSpeed = Float(2)
-
-    private var value: Float {
-        didSet {
-            guard value != oldValue else { return }
-            model.position = converter.axisToServo(value)
-        }
-    }
 
     init(model: ServoChannelModel, config: AxisOutputConfig) {
         self.model = model
