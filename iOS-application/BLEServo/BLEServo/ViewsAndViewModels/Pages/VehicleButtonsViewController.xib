@@ -74,17 +74,6 @@
             <point key="canvasLocation" x="131.8840579710145" y="93.75"/>
         </view>
     </objects>
-    <designables>
-        <designable name="KaG-6x-Oqr">
-            <size key="intrinsicContentSize" width="374" height="47"/>
-        </designable>
-        <designable name="s0J-K2-DMS">
-            <size key="intrinsicContentSize" width="83" height="166"/>
-        </designable>
-        <designable name="yYs-wF-4fc">
-            <size key="intrinsicContentSize" width="165.5" height="83"/>
-        </designable>
-    </designables>
     <resources>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

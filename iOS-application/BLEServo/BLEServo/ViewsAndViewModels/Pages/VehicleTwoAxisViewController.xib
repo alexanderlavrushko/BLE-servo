@@ -23,47 +23,44 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KLv-66-WJu" customClass="AxisView" customModule="BLEServo" customModuleProvider="target">
-                    <rect key="frame" x="20" y="306" width="207" height="112.5"/>
+                    <rect key="frame" x="20" y="446" width="207" height="112"/>
                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="112" id="f6R-5d-Xpm"/>
+                        <constraint firstAttribute="width" relation="lessThanOrEqual" constant="250" id="wEt-yN-BbW"/>
+                    </constraints>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VeT-Yf-G1g" customClass="AxisView" customModule="BLEServo" customModuleProvider="target">
-                    <rect key="frame" x="187" y="438.5" width="207" height="112.5"/>
+                    <rect key="frame" x="187" y="578" width="207" height="112"/>
                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2Fa-2w-CUc" customClass="StatusView" customModule="BLEServo" customModuleProvider="target">
-                    <rect key="frame" x="20" y="54" width="374" height="63"/>
+                    <rect key="frame" x="20" y="54" width="374" height="70"/>
                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="70" id="tZ4-Py-3Nc"/>
+                    </constraints>
                 </view>
             </subviews>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
             <color key="backgroundColor" systemColor="systemGroupedBackgroundColor"/>
             <constraints>
-                <constraint firstItem="KLv-66-WJu" firstAttribute="centerY" secondItem="vUN-kp-3ea" secondAttribute="centerY" multiplier="0.8" priority="900" id="9fG-mY-T91"/>
                 <constraint firstItem="2Fa-2w-CUc" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" constant="10" id="9vP-4P-zix"/>
                 <constraint firstItem="KLv-66-WJu" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="20" id="BQ7-uH-h0o"/>
+                <constraint firstItem="VeT-Yf-G1g" firstAttribute="centerY" secondItem="vUN-kp-3ea" secondAttribute="centerY" multiplier="1.4" priority="900" id="K8E-14-xKM"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="VeT-Yf-G1g" secondAttribute="trailing" constant="20" id="LEm-eo-bPi"/>
-                <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="VeT-Yf-G1g" secondAttribute="bottom" constant="20" id="QJT-TX-Gye"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="VeT-Yf-G1g" secondAttribute="bottom" priority="900" constant="20" id="QJT-TX-Gye"/>
                 <constraint firstItem="VeT-Yf-G1g" firstAttribute="width" secondItem="KLv-66-WJu" secondAttribute="width" id="XGs-eY-GwE"/>
-                <constraint firstItem="VeT-Yf-G1g" firstAttribute="top" secondItem="KLv-66-WJu" secondAttribute="bottom" constant="20" id="aMy-La-6wH"/>
+                <constraint firstItem="VeT-Yf-G1g" firstAttribute="top" secondItem="KLv-66-WJu" secondAttribute="bottom" priority="900" constant="20" id="aMy-La-6wH"/>
                 <constraint firstItem="2Fa-2w-CUc" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="20" id="ibk-l9-9KY"/>
+                <constraint firstItem="VeT-Yf-G1g" firstAttribute="height" secondItem="KLv-66-WJu" secondAttribute="height" id="jeb-Ya-Z7k"/>
                 <constraint firstItem="KLv-66-WJu" firstAttribute="top" relation="greaterThanOrEqual" secondItem="2Fa-2w-CUc" secondAttribute="bottom" constant="20" id="r6b-UF-rO8"/>
-                <constraint firstItem="KLv-66-WJu" firstAttribute="width" secondItem="iN0-l3-epB" secondAttribute="width" multiplier="0.5" id="uLV-8u-uvo"/>
+                <constraint firstItem="KLv-66-WJu" firstAttribute="width" secondItem="iN0-l3-epB" secondAttribute="width" multiplier="0.5" priority="900" id="uLV-8u-uvo"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="2Fa-2w-CUc" secondAttribute="trailing" constant="20" id="ym4-xi-VYb"/>
             </constraints>
             <point key="canvasLocation" x="152.17391304347828" y="-139.28571428571428"/>
         </view>
     </objects>
-    <designables>
-        <designable name="2Fa-2w-CUc">
-            <size key="intrinsicContentSize" width="374" height="47"/>
-        </designable>
-        <designable name="KLv-66-WJu">
-            <size key="intrinsicContentSize" width="207" height="112.5"/>
-        </designable>
-        <designable name="VeT-Yf-G1g">
-            <size key="intrinsicContentSize" width="207" height="112.5"/>
-        </designable>
-    </designables>
     <resources>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
