@@ -8,16 +8,6 @@
 import UIKit
 
 class VehicleTwoAxisViewController: UIViewController {
-    // MARK: - Load from nib
-    class private var nibName: String {
-        NSStringFromClass(self).components(separatedBy: ".").last!
-    }
-
-    class func loadFromNib() -> VehicleTwoAxisViewController {
-        VehicleTwoAxisViewController(nibName: nibName, bundle: Bundle(for: self))
-    }
-
-    // MARK: - Internal logic
     @IBOutlet weak var statusView: StatusView!
     @IBOutlet weak var axisViewDriving: AxisView!
     @IBOutlet weak var axisViewSteering: AxisView!
@@ -39,6 +29,7 @@ class VehicleTwoAxisViewController: UIViewController {
     }
 
     override func viewDidLoad() {
+        super.viewDidLoad()
         connectToViewModel()
     }
 }

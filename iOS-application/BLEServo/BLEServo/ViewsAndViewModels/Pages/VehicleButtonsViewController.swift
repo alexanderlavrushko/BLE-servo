@@ -8,16 +8,6 @@
 import UIKit
 
 class VehicleButtonsViewController: UIViewController {
-    // MARK: - Load from nib
-    class private var nibName: String {
-        NSStringFromClass(self).components(separatedBy: ".").last!
-    }
-
-    class func loadFromNib() -> VehicleButtonsViewController {
-        VehicleButtonsViewController(nibName: nibName, bundle: Bundle(for: self))
-    }
-
-    // MARK: - Internal logic
     @IBOutlet weak var statusView: StatusView!
     @IBOutlet weak var axisViewDriving: ButtonsVAxisView!
     @IBOutlet weak var axisViewSteering: ButtonsHAxisView!
@@ -39,6 +29,7 @@ class VehicleButtonsViewController: UIViewController {
     }
 
     override func viewDidLoad() {
+        super.viewDidLoad()
         connectToViewModel()
     }
 }

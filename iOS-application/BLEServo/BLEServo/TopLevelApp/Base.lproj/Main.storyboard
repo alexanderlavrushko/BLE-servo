@@ -34,8 +34,12 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="BLE Servo" id="CNa-j6-6cY">
+                        <barButtonItem key="backBarButtonItem" title=" " id="z2f-GA-axV"/>
                         <barButtonItem key="rightBarButtonItem" title="Settings" id="l7h-Bq-M6i">
                             <imageReference key="image" image="gear" catalog="system" symbolScale="large"/>
+                            <connections>
+                                <action selector="onTapSettings:" destination="BYZ-38-t0r" id="rZO-T4-bKN"/>
+                            </connections>
                         </barButtonItem>
                     </navigationItem>
                     <connections>

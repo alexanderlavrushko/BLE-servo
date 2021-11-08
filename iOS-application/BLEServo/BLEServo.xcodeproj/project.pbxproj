@@ -34,6 +34,12 @@
 		AB7AA8A9273366EB0050FA62 /* ValueAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB7AA8A8273366EA0050FA62 /* ValueAnimator.swift */; };
 		AB7AA8DD2734B4250050FA62 /* AxisRenderValueView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB7AA8DC2734B4250050FA62 /* AxisRenderValueView.swift */; };
 		AB7AA8E1273564730050FA62 /* AxisRenderValueViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB7AA8E0273564730050FA62 /* AxisRenderValueViewModel.swift */; };
+		AB7AA8E62738A5C00050FA62 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB7AA8E42738A5C00050FA62 /* SettingsViewController.swift */; };
+		AB7AA8E72738A5C00050FA62 /* SettingsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = AB7AA8E52738A5C00050FA62 /* SettingsViewController.xib */; };
+		AB7AA8E92738AD210050FA62 /* UIViewController+loadFromNib.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB7AA8E82738AD210050FA62 /* UIViewController+loadFromNib.swift */; };
+		AB7AA8EB2738AE470050FA62 /* SettingsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB7AA8EA2738AE470050FA62 /* SettingsModel.swift */; };
+		AB7AA8ED2738CD120050FA62 /* SettingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB7AA8EC2738CD120050FA62 /* SettingsViewModel.swift */; };
+		AB7AA8F6273941EE0050FA62 /* SettingsModelImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB7AA8F5273941EE0050FA62 /* SettingsModelImpl.swift */; };
 		AB8F3DAC2730489900BF9E76 /* VehicleTwoAxisViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB8F3DAA2730489900BF9E76 /* VehicleTwoAxisViewController.swift */; };
 		AB8F3DAD2730489900BF9E76 /* VehicleTwoAxisViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = AB8F3DAB2730489900BF9E76 /* VehicleTwoAxisViewController.xib */; };
 		AB8F3DAF27306B1D00BF9E76 /* ServoControlCenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB8F3DAE27306B1D00BF9E76 /* ServoControlCenter.swift */; };
@@ -73,6 +79,12 @@
 		AB7AA8A8273366EA0050FA62 /* ValueAnimator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValueAnimator.swift; sourceTree = "<group>"; };
 		AB7AA8DC2734B4250050FA62 /* AxisRenderValueView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AxisRenderValueView.swift; sourceTree = "<group>"; };
 		AB7AA8E0273564730050FA62 /* AxisRenderValueViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AxisRenderValueViewModel.swift; sourceTree = "<group>"; };
+		AB7AA8E42738A5C00050FA62 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
+		AB7AA8E52738A5C00050FA62 /* SettingsViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SettingsViewController.xib; sourceTree = "<group>"; };
+		AB7AA8E82738AD210050FA62 /* UIViewController+loadFromNib.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+loadFromNib.swift"; sourceTree = "<group>"; };
+		AB7AA8EA2738AE470050FA62 /* SettingsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsModel.swift; sourceTree = "<group>"; };
+		AB7AA8EC2738CD120050FA62 /* SettingsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewModel.swift; sourceTree = "<group>"; };
+		AB7AA8F5273941EE0050FA62 /* SettingsModelImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsModelImpl.swift; sourceTree = "<group>"; };
 		AB8F3DAA2730489900BF9E76 /* VehicleTwoAxisViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VehicleTwoAxisViewController.swift; sourceTree = "<group>"; };
 		AB8F3DAB2730489900BF9E76 /* VehicleTwoAxisViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = VehicleTwoAxisViewController.xib; sourceTree = "<group>"; };
 		AB8F3DAE27306B1D00BF9E76 /* ServoControlCenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServoControlCenter.swift; sourceTree = "<group>"; };
@@ -127,6 +139,8 @@
 				AB79D76026D1B2070030CF8B /* ServoModel.swift */,
 				AB597EB8272F3ABE00777397 /* ServoChannelModel.swift */,
 				AB79D75E26D1AFFB0030CF8B /* BLEServo.swift */,
+				AB7AA8EA2738AE470050FA62 /* SettingsModel.swift */,
+				AB7AA8F5273941EE0050FA62 /* SettingsModelImpl.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -170,6 +184,9 @@
 				AB7AA8A327333E450050FA62 /* VehicleButtonsViewController.xib */,
 				AB7AA8A227333E450050FA62 /* VehicleButtonsViewController.swift */,
 				AB7AA8A6273341EC0050FA62 /* VehicleButtonsViewModel.swift */,
+				AB7AA8E52738A5C00050FA62 /* SettingsViewController.xib */,
+				AB7AA8E42738A5C00050FA62 /* SettingsViewController.swift */,
+				AB7AA8EC2738CD120050FA62 /* SettingsViewModel.swift */,
 			);
 			path = Pages;
 			sourceTree = "<group>";
@@ -203,6 +220,7 @@
 				AB79D76226D1B9300030CF8B /* Extensions.swift */,
 				AB597EB0272DB21000777397 /* UIView+extension.swift */,
 				AB8F3DC02730B4AA00BF9E76 /* UIViewWithNib.swift */,
+				AB7AA8E82738AD210050FA62 /* UIViewController+loadFromNib.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -273,6 +291,7 @@
 				AB79D75426D1AE870030CF8B /* Assets.xcassets in Resources */,
 				AB79D75226D1AE860030CF8B /* Main.storyboard in Resources */,
 				AB7AA8982733211A0050FA62 /* ButtonsVAxisView.xib in Resources */,
+				AB7AA8E72738A5C00050FA62 /* SettingsViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -291,13 +310,16 @@
 				AB597EB1272DB21000777397 /* UIView+extension.swift in Sources */,
 				AB7AA8A9273366EB0050FA62 /* ValueAnimator.swift in Sources */,
 				AB597EB3272DB76500777397 /* AxisViewModel.swift in Sources */,
+				AB7AA8F6273941EE0050FA62 /* SettingsModelImpl.swift in Sources */,
 				AB79D74F26D1AE860030CF8B /* MainViewController.swift in Sources */,
 				AB8F3DC12730B4AA00BF9E76 /* UIViewWithNib.swift in Sources */,
 				AB8F3DAF27306B1D00BF9E76 /* ServoControlCenter.swift in Sources */,
 				AB79D74B26D1AE860030CF8B /* AppDelegate.swift in Sources */,
+				AB7AA8EB2738AE470050FA62 /* SettingsModel.swift in Sources */,
 				AB7AA8DD2734B4250050FA62 /* AxisRenderValueView.swift in Sources */,
 				AB8F3DAC2730489900BF9E76 /* VehicleTwoAxisViewController.swift in Sources */,
 				AB7AA89C27332A360050FA62 /* ButtonsAxisViewModel.swift in Sources */,
+				AB7AA8ED2738CD120050FA62 /* SettingsViewModel.swift in Sources */,
 				AB8F3DB32730854A00BF9E76 /* StatusView.swift in Sources */,
 				AB79D74D26D1AE860030CF8B /* SceneDelegate.swift in Sources */,
 				AB597EB5272DC2E000777397 /* AxisConverter.swift in Sources */,
@@ -306,8 +328,10 @@
 				AB597EB7272F1E7E00777397 /* VehicleTwoAxisViewModel.swift in Sources */,
 				AB7AA8A7273341EC0050FA62 /* VehicleButtonsViewModel.swift in Sources */,
 				AB597EB9272F3ABE00777397 /* ServoChannelModel.swift in Sources */,
+				AB7AA8E62738A5C00050FA62 /* SettingsViewController.swift in Sources */,
 				AB7AA8E1273564730050FA62 /* AxisRenderValueViewModel.swift in Sources */,
 				AB7AA8A427333E450050FA62 /* VehicleButtonsViewController.swift in Sources */,
+				AB7AA8E92738AD210050FA62 /* UIViewController+loadFromNib.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

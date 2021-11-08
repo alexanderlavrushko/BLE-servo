@@ -13,6 +13,7 @@ class ServoControlCenter {
 
     private init() {
         servoModel = BLEServo()
+        settingsModel = SettingsModelImpl()
     }
 
     static func create() {
@@ -26,7 +27,26 @@ class ServoControlCenter {
 
     // MARK: - Internal logic
     private let servoModel: ServoModel
+    private let settingsModel: SettingsModel
 
+    func takeControl() -> UIViewController {
+        switch settingsModel.controlType {
+        case .twoHorizontalSliders:
+            return takeControlWithAxis()
+        case .fourButtons:
+            return takeControlWithButtons()
+        }
+    }
+
+    func makeSettingsViewController(onDismiss: @escaping (() -> Void)) -> UIViewController {
+        let settingsVC = SettingsViewController.loadFromNib()
+        settingsVC.viewModel = SettingsViewModelImpl(model: settingsModel)
+        settingsVC.onDismiss = onDismiss
+        return settingsVC
+    }
+}
+
+private extension ServoControlCenter {
     func takeControlWithAxis() -> UIViewController {
         let vc = VehicleTwoAxisViewController.loadFromNib()
         vc.viewModel = VehicleTwoAxisViewModelImpl(
