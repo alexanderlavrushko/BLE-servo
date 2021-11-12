@@ -9,13 +9,8 @@ import Foundation
 
 class SettingsModelImpl: SettingsModel {
     // MARK: - SettingsModel implementation
-    var controlType: ControlType {
-        get { controlTypeInternal.value }
-        set { controlTypeInternal.value = newValue }
-    }
-
-    // MARK: - Internal logic
-    private var controlTypeInternal = Stored<ControlType>(key: .controlType, defaultValue: .twoHorizontalSliders)
+    @UserDefault(key: .controlType, defaultValue: .twoHorizontalSliders)
+    var controlType: ControlType
 }
 
 private enum SettingsKey: String {
@@ -26,18 +21,15 @@ private enum SettingsKey: String {
     }
 }
 
-private class Stored<ValueType: RawRepresentable> where ValueType.RawValue == String {
-    let key: SettingsKey
+@propertyWrapper
+struct UserDefault<ValueType: RawRepresentable> where ValueType.RawValue == String {
+    fileprivate let key: SettingsKey
     let defaultValue: ValueType
+    var container: UserDefaults { .standard }
 
-    var value: ValueType {
-        get { UserDefaults.standard.read(key) ?? defaultValue }
-        set { UserDefaults.standard.write(newValue, key: key)}
-    }
-
-    init(key: SettingsKey, defaultValue: ValueType) {
-        self.key = key
-        self.defaultValue = defaultValue
+    var wrappedValue: ValueType {
+        get { container.read(key) ?? defaultValue }
+        set { container.write(newValue, key: key) }
     }
 }
 
