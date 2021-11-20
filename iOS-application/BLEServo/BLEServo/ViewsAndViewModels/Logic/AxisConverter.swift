@@ -12,13 +12,13 @@ import Foundation
 /// Output range is configurable:
 /// - can also be asymmetric (different output ranges for positive and negative input values)
 /// - can also be inverted (output values increase for negative inputs and decrease for positive inputs)
-struct AxisOutputConfig {
+struct AxisOutputConfig: Codable {
     /// An output value for an input value of Float(0).
-    let center: UInt8
+    var center: UInt8
     /// An output value for an input value of Float(-1).
-    let maxNegative: UInt8
+    var maxNegative: UInt8
     /// An output value for an input value of Float(1).
-    let maxPositive: UInt8
+    var maxPositive: UInt8
 
     static var defaultConfig: AxisOutputConfig {
         AxisOutputConfig(center: 127, maxNegative: 0, maxPositive: 255)

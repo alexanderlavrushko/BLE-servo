@@ -53,10 +53,11 @@ class ButtonsAxisViewModelImpl: ButtonsAxisViewModel {
     private let model: ServoChannelModel
     private let converter: AxisConverter
     private let animator = ValueAnimator()
-    private let animationSpeed = Float(2)
+    private let animationSpeed: Float
 
-    init(model: ServoChannelModel, config: AxisOutputConfig) {
+    init(model: ServoChannelModel, config: AxisOutputConfig, animationSpeed: Float) {
         self.model = model
+        self.animationSpeed = animationSpeed
         converter = AxisConverter(config)
         value = converter.servoToAxis(model.position)
         animateValue(to: 0)

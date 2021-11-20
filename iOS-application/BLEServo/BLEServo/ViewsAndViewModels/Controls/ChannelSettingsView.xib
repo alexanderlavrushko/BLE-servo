@@ -1,0 +1,202 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="19162" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19144"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ChannelSettingsView" customModule="BLEServo" customModuleProvider="target">
+            <connections>
+                <outlet property="textFieldAnimationSpeed" destination="IA0-KS-AhF" id="U8b-33-Plo"/>
+                <outlet property="textFieldChannelIndex" destination="n0U-9o-zTI" id="ZFj-GS-aFi"/>
+                <outlet property="textFieldMappingCenter" destination="AQc-VU-wZE" id="kMr-TH-W28"/>
+                <outlet property="textFieldMappingNegative" destination="5gV-U6-lWa" id="n37-bG-Erc"/>
+                <outlet property="textFieldMappingPositive" destination="7mn-De-Jqc" id="bMm-Wu-Cks"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB">
+            <rect key="frame" x="0.0" y="0.0" width="417" height="360"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9WG-PR-jku">
+                    <rect key="frame" x="0.0" y="44" width="417" height="197.5"/>
+                    <subviews>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Axis mapping" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rFn-Fj-g7m">
+                            <rect key="frame" x="12" y="8" width="102.5" height="20.5"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="2" translatesAutoresizingMaskIntoConstraints="NO" id="xFC-rr-1vN">
+                            <rect key="frame" x="12" y="32.5" width="393" height="54"/>
+                            <subviews>
+                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalCentering" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="aJh-hr-APx">
+                                    <rect key="frame" x="0.0" y="0.0" width="129.5" height="54"/>
+                                    <subviews>
+                                        <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="5gV-U6-lWa" customClass="NumericTextField" customModule="BLEServo" customModuleProvider="target">
+                                            <rect key="frame" x="0.0" y="0.0" width="129.5" height="34"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                            <textInputTraits key="textInputTraits"/>
+                                            <connections>
+                                                <action selector="onEditingDidBegin:" destination="-1" eventType="editingDidBegin" id="L73-8t-sA6"/>
+                                                <action selector="onMappingNegativeEditingDidEnd:" destination="-1" eventType="editingDidEnd" id="ERu-GG-H6P"/>
+                                                <action selector="onTextFieldDidEndOnExit:" destination="-1" eventType="editingDidEndOnExit" id="YC7-sh-svi"/>
+                                            </connections>
+                                        </textField>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="-1" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gaU-H8-p8u">
+                                            <rect key="frame" x="57" y="34" width="15.5" height="20"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <color key="textColor" systemColor="secondaryLabelColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="5gV-U6-lWa" firstAttribute="width" secondItem="aJh-hr-APx" secondAttribute="width" id="xyk-pc-IOn"/>
+                                    </constraints>
+                                </stackView>
+                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalCentering" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="EYs-p4-xWe">
+                                    <rect key="frame" x="131.5" y="0.0" width="130" height="54"/>
+                                    <subviews>
+                                        <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="AQc-VU-wZE" customClass="NumericTextField" customModule="BLEServo" customModuleProvider="target">
+                                            <rect key="frame" x="0.0" y="0.0" width="130" height="34"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                            <textInputTraits key="textInputTraits"/>
+                                            <connections>
+                                                <action selector="onEditingDidBegin:" destination="-1" eventType="editingDidBegin" id="6Wk-e8-jw9"/>
+                                                <action selector="onMappingCenterEditingDidEnd:" destination="-1" eventType="editingDidEnd" id="TtD-J6-YX2"/>
+                                                <action selector="onTextFieldDidEndOnExit:" destination="-1" eventType="editingDidEndOnExit" id="nvZ-sR-5rg"/>
+                                            </connections>
+                                        </textField>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zEC-5t-djg">
+                                            <rect key="frame" x="60" y="34" width="10.5" height="20"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <color key="textColor" systemColor="secondaryLabelColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="AQc-VU-wZE" firstAttribute="width" secondItem="EYs-p4-xWe" secondAttribute="width" id="5Fw-tS-cne"/>
+                                    </constraints>
+                                </stackView>
+                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalCentering" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="83H-Tg-hrQ">
+                                    <rect key="frame" x="263.5" y="0.0" width="129.5" height="54"/>
+                                    <subviews>
+                                        <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="7mn-De-Jqc" customClass="NumericTextField" customModule="BLEServo" customModuleProvider="target">
+                                            <rect key="frame" x="0.0" y="0.0" width="129.5" height="34"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                            <textInputTraits key="textInputTraits"/>
+                                            <connections>
+                                                <action selector="onEditingDidBegin:" destination="-1" eventType="editingDidBegin" id="mza-7q-3gS"/>
+                                                <action selector="onMappingPositiveEditingDidEnd:" destination="-1" eventType="editingDidEnd" id="NEp-8h-lHN"/>
+                                                <action selector="onTextFieldDidEndOnExit:" destination="-1" eventType="editingDidEndOnExit" id="Gz0-RE-aAj"/>
+                                            </connections>
+                                        </textField>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9aM-yt-ArM">
+                                            <rect key="frame" x="61" y="34" width="7.5" height="20"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <color key="textColor" systemColor="secondaryLabelColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="7mn-De-Jqc" firstAttribute="width" secondItem="83H-Tg-hrQ" secondAttribute="width" id="kgZ-s7-8Qa"/>
+                                    </constraints>
+                                </stackView>
+                            </subviews>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="54" id="xBr-nd-z0e"/>
+                            </constraints>
+                        </stackView>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Channel index" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rXF-mC-fhD">
+                            <rect key="frame" x="12" y="119.5" width="107.5" height="20.5"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Animation speed" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Nlo-F1-6V1">
+                            <rect key="frame" x="12" y="160" width="128" height="20.5"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <nil key="textColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="n0U-9o-zTI" customClass="NumericTextField" customModule="BLEServo" customModuleProvider="target">
+                            <rect key="frame" x="160" y="113" width="107.5" height="34"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                            <textInputTraits key="textInputTraits"/>
+                            <connections>
+                                <action selector="onChannelIndexEditingDidEnd:" destination="-1" eventType="editingDidEnd" id="0rI-Wx-678"/>
+                                <action selector="onEditingDidBegin:" destination="-1" eventType="editingDidBegin" id="rG0-5D-pAd"/>
+                                <action selector="onTextFieldDidEndOnExit:" destination="-1" eventType="editingDidEndOnExit" id="ic1-FS-1kF"/>
+                            </connections>
+                        </textField>
+                        <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="IA0-KS-AhF" customClass="NumericTextField" customModule="BLEServo" customModuleProvider="target">
+                            <rect key="frame" x="160" y="153.5" width="107.5" height="34"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                            <textInputTraits key="textInputTraits"/>
+                            <connections>
+                                <action selector="onAnimationSpeedEditingDidEnd:" destination="-1" eventType="editingDidEnd" id="aMP-sn-qhB"/>
+                                <action selector="onEditingDidBegin:" destination="-1" eventType="editingDidBegin" id="jqc-On-UhB"/>
+                                <action selector="onTextFieldDidEndOnExit:" destination="-1" eventType="editingDidEndOnExit" id="88i-C9-Jpr"/>
+                            </connections>
+                        </textField>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Input range [-1;1] - output [0;255]" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="elN-ma-jf8">
+                            <rect key="frame" x="24" y="90.5" width="369" height="17"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                            <color key="textColor" systemColor="secondaryLabelColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                    </subviews>
+                    <color key="backgroundColor" systemColor="tertiarySystemBackgroundColor"/>
+                    <constraints>
+                        <constraint firstItem="Nlo-F1-6V1" firstAttribute="top" secondItem="rXF-mC-fhD" secondAttribute="bottom" constant="20" id="2Rd-HN-oYf"/>
+                        <constraint firstItem="IA0-KS-AhF" firstAttribute="leading" secondItem="Nlo-F1-6V1" secondAttribute="trailing" constant="20" id="EhO-gL-fAt"/>
+                        <constraint firstAttribute="trailing" secondItem="elN-ma-jf8" secondAttribute="trailing" constant="24" id="Nd3-mA-Bli"/>
+                        <constraint firstItem="n0U-9o-zTI" firstAttribute="centerY" secondItem="rXF-mC-fhD" secondAttribute="centerY" id="Nth-rG-seZ"/>
+                        <constraint firstItem="xFC-rr-1vN" firstAttribute="leading" secondItem="9WG-PR-jku" secondAttribute="leading" constant="12" id="Oh9-FW-P1l"/>
+                        <constraint firstItem="Nlo-F1-6V1" firstAttribute="leading" secondItem="rFn-Fj-g7m" secondAttribute="leading" id="PEd-nh-cXQ"/>
+                        <constraint firstItem="IA0-KS-AhF" firstAttribute="width" secondItem="n0U-9o-zTI" secondAttribute="width" id="PZq-54-fKa"/>
+                        <constraint firstItem="rFn-Fj-g7m" firstAttribute="leading" secondItem="9WG-PR-jku" secondAttribute="leading" constant="12" id="RM1-D9-Nfj"/>
+                        <constraint firstItem="n0U-9o-zTI" firstAttribute="leading" secondItem="IA0-KS-AhF" secondAttribute="leading" id="RdD-sW-cmG"/>
+                        <constraint firstItem="rXF-mC-fhD" firstAttribute="top" secondItem="elN-ma-jf8" secondAttribute="bottom" constant="12" id="TMl-gz-avr"/>
+                        <constraint firstItem="xFC-rr-1vN" firstAttribute="top" secondItem="rFn-Fj-g7m" secondAttribute="bottom" priority="999" constant="4" id="YSC-Uw-4Hq"/>
+                        <constraint firstItem="rFn-Fj-g7m" firstAttribute="top" secondItem="9WG-PR-jku" secondAttribute="top" constant="8" id="bBN-Nt-Rdx"/>
+                        <constraint firstItem="IA0-KS-AhF" firstAttribute="centerY" secondItem="Nlo-F1-6V1" secondAttribute="centerY" id="cUG-DK-Hhm"/>
+                        <constraint firstItem="n0U-9o-zTI" firstAttribute="width" secondItem="rXF-mC-fhD" secondAttribute="width" id="eFh-TF-vSI"/>
+                        <constraint firstAttribute="bottom" secondItem="IA0-KS-AhF" secondAttribute="bottom" constant="10" id="nM7-hO-wFg"/>
+                        <constraint firstItem="elN-ma-jf8" firstAttribute="top" secondItem="xFC-rr-1vN" secondAttribute="bottom" constant="4" id="oyg-uc-1Zo"/>
+                        <constraint firstAttribute="trailing" secondItem="xFC-rr-1vN" secondAttribute="trailing" constant="12" id="pfM-tT-c7e"/>
+                        <constraint firstItem="rXF-mC-fhD" firstAttribute="leading" secondItem="rFn-Fj-g7m" secondAttribute="leading" id="sVV-Oj-c1s"/>
+                        <constraint firstItem="elN-ma-jf8" firstAttribute="leading" secondItem="9WG-PR-jku" secondAttribute="leading" constant="24" id="th5-oL-mAq"/>
+                    </constraints>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
+                        <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                            <integer key="value" value="12"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
+                </view>
+            </subviews>
+            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <constraints>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="9WG-PR-jku" secondAttribute="bottom" priority="250" id="RCu-Td-0Es"/>
+                <constraint firstItem="9WG-PR-jku" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" id="ZKr-yi-Bkj"/>
+                <constraint firstItem="9WG-PR-jku" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="t6t-gZ-xlo"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="9WG-PR-jku" secondAttribute="trailing" id="y83-9V-7bE"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <point key="canvasLocation" x="134.05797101449275" y="-93.75"/>
+        </view>
+    </objects>
+    <resources>
+        <systemColor name="secondaryLabelColor">
+            <color red="0.23529411764705882" green="0.23529411764705882" blue="0.2627450980392157" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="tertiarySystemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>

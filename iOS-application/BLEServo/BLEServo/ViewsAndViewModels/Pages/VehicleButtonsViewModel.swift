@@ -32,15 +32,15 @@ class VehicleButtonsViewModelImpl: VehicleButtonsViewModel {
 
     // MARK: - Internal logic
     let model: ServoModel
-    let drivingConfig: AxisOutputConfig
-    let steeringConfig: AxisOutputConfig
+    let drivingSettings: ChannelSettingsData
+    let steeringSettings: ChannelSettingsData
     var drivingAxis: ButtonsAxisViewModelImpl! { didSet { onDrivingViewModelDidChange?(drivingViewModel) } }
     var steeringAxis: ButtonsAxisViewModelImpl! { didSet { onSteeringViewModelDidChange?(steeringViewModel) } }
 
-    init(model: ServoModel, driving: AxisOutputConfig, steering: AxisOutputConfig) {
+    init(model: ServoModel, driving: ChannelSettingsData, steering: ChannelSettingsData) {
         self.model = model
-        drivingConfig = driving
-        steeringConfig = steering
+        drivingSettings = driving
+        steeringSettings = steering
         statusViewModel = StatusViewModelImpl(model: model.statusModel)
         connectToModel()
     }
@@ -55,19 +55,21 @@ private extension VehicleButtonsViewModelImpl {
     }
 
     func connectToChannels() {
-        drivingAxis = ButtonsAxisViewModelImpl(
-            model: getChannel(index: 0),
-            config: drivingConfig
-        )
-        steeringAxis = ButtonsAxisViewModelImpl(
-            model: getChannel(index: 1),
-            config: steeringConfig
+        drivingAxis = makeAxisViewModel(drivingSettings)
+        steeringAxis = makeAxisViewModel(steeringSettings)
+    }
+
+    func makeAxisViewModel(_ settings: ChannelSettingsData) -> ButtonsAxisViewModelImpl {
+        ButtonsAxisViewModelImpl(
+            model: getChannel(index: settings.channelIndex),
+            config: settings.outputConfig,
+            animationSpeed: settings.animationSpeed
         )
     }
 
-    func getChannel(index: Int) -> ServoChannelModel {
+    func getChannel(index: UInt8) -> ServoChannelModel {
         if index < model.channels.count {
-            return model.channels[index]
+            return model.channels[Int(index)]
         }
         return ServoChannelModelStub()
     }

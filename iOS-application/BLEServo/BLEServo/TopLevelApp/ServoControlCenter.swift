@@ -51,8 +51,8 @@ private extension ServoControlCenter {
         let vc = VehicleTwoAxisViewController.loadFromNib()
         vc.viewModel = VehicleTwoAxisViewModelImpl(
             model: servoModel,
-            driving: AxisOutputConfig.defaultConfig,
-            steering: AxisOutputConfig(center: 112, maxNegative: 196, maxPositive: 18)
+            driving: settingsModel.drivingModel.data,
+            steering: settingsModel.steeringModel.data
         )
         return vc
     }
@@ -61,8 +61,8 @@ private extension ServoControlCenter {
         let vc = VehicleButtonsViewController.loadFromNib()
         vc.viewModel = VehicleButtonsViewModelImpl(
             model: servoModel,
-            driving: AxisOutputConfig.defaultConfig,
-            steering: AxisOutputConfig(center: 112, maxNegative: 196, maxPositive: 18)
+            driving: settingsModel.drivingModel.data,
+            steering: settingsModel.steeringModel.data
         )
         return vc
     }

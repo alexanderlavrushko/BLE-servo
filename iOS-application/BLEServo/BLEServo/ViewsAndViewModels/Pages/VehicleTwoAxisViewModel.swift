@@ -32,15 +32,15 @@ class VehicleTwoAxisViewModelImpl: VehicleTwoAxisViewModel {
 
     // MARK: - Internal logic
     let model: ServoModel
-    let drivingConfig: AxisOutputConfig
-    let steeringConfig: AxisOutputConfig
+    let drivingSettings: ChannelSettingsData
+    let steeringSettings: ChannelSettingsData
     var drivingAxis: AxisViewModelImpl! { didSet { onDrivingViewModelDidChange?(drivingViewModel) } }
     var steeringAxis: AxisViewModelImpl! { didSet { onSteeringViewModelDidChange?(steeringViewModel) } }
 
-    init(model: ServoModel, driving: AxisOutputConfig, steering: AxisOutputConfig) {
+    init(model: ServoModel, driving: ChannelSettingsData, steering: ChannelSettingsData) {
         self.model = model
-        drivingConfig = driving
-        steeringConfig = steering
+        drivingSettings = driving
+        steeringSettings = steering
         statusViewModel = StatusViewModelImpl(model: model.statusModel)
         connectToModel()
     }
@@ -55,21 +55,22 @@ private extension VehicleTwoAxisViewModelImpl {
     }
 
     func connectToChannels() {
-        drivingAxis = AxisViewModelImpl(
-            model: getChannel(index: 0),
-            axisName: "Driving",
-            config: drivingConfig
-        )
-        steeringAxis = AxisViewModelImpl(
-            model: getChannel(index: 1),
-            axisName: "Steering",
-            config: steeringConfig
+        drivingAxis = makeAxisViewModel("Driving", settings: drivingSettings)
+        steeringAxis = makeAxisViewModel("Steering", settings: steeringSettings)
+    }
+
+    func makeAxisViewModel(_ name: String, settings: ChannelSettingsData) -> AxisViewModelImpl {
+        AxisViewModelImpl(
+            model: getChannel(index: settings.channelIndex),
+            axisName: name,
+            config: settings.outputConfig,
+            animationSpeed: settings.animationSpeed
         )
     }
 
-    func getChannel(index: Int) -> ServoChannelModel {
+    func getChannel(index: UInt8) -> ServoChannelModel {
         if index < model.channels.count {
-            return model.channels[index]
+            return model.channels[Int(index)]
         }
         return ServoChannelModelStub()
     }

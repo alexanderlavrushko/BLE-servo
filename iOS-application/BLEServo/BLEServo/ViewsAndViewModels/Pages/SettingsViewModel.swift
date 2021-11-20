@@ -11,6 +11,13 @@ import UIKit
 protocol SettingsViewModel: AnyObject {
     var controlTypeIndex: Int { get set }
     var allControlTypeImages: [UIImage] { get }
+
+    var drivingViewModel: ChannelSettingsViewModel { get }
+    var steeringViewModel: ChannelSettingsViewModel { get }
+
+    var onNeedToReloadValues: (() -> Void)? { get set }
+    func restorePresetMyCar()
+    func resetToDefaults()
 }
 
 class SettingsViewModelImpl: SettingsViewModel {
@@ -30,11 +37,40 @@ class SettingsViewModelImpl: SettingsViewModel {
         }
     }
 
+    var drivingViewModel: ChannelSettingsViewModel { drivingImpl }
+    var steeringViewModel: ChannelSettingsViewModel { steeringImpl }
+
+    var onNeedToReloadValues: (() -> Void)?
+
+    func restorePresetMyCar() {
+        model.controlType = .twoHorizontalSliders
+        model.drivingModel.data = ChannelSettingsData(
+            channelIndex: 0,
+            outputConfig: AxisOutputConfig(center: 127, maxNegative: 10, maxPositive: 245),
+            animationSpeed: 2
+        )
+        model.steeringModel.data = ChannelSettingsData(
+            channelIndex: 1,
+            outputConfig: AxisOutputConfig(center: 112, maxNegative: 196, maxPositive: 18),
+            animationSpeed: 2
+        )
+        onNeedToReloadValues?()
+    }
+
+    func resetToDefaults() {
+        model.resetToDefaults()
+        onNeedToReloadValues?()
+    }
+
     // MARK: - Internal logic
     private var model: SettingsModel
+    var drivingImpl: ChannelSettingsViewModelImpl
+    var steeringImpl: ChannelSettingsViewModelImpl
 
     init(model: SettingsModel) {
         self.model = model
+        drivingImpl = ChannelSettingsViewModelImpl(model: model.drivingModel)
+        steeringImpl = ChannelSettingsViewModelImpl(model: model.steeringModel)
     }
 }
 

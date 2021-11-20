@@ -11,6 +11,9 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="SettingsViewController" customModule="BLEServo" customModuleProvider="target">
             <connections>
+                <outlet property="channelSettingsViewDriving" destination="q30-Tf-Ibo" id="TFv-UB-2eF"/>
+                <outlet property="channelSettingsViewSteering" destination="RK8-Cf-yS7" id="haG-sn-EPD"/>
+                <outlet property="scrollView" destination="iM0-uw-TDW" id="2ow-IK-HUP"/>
                 <outlet property="segmentedControlControlType" destination="lSa-Yt-fUS" id="nxk-SA-aQK"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
@@ -20,34 +23,147 @@
             <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Control type" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zlM-Gi-YjH">
-                    <rect key="frame" x="30" y="54" width="85" height="18"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                    <color key="textColor" systemColor="secondaryLabelColor"/>
-                    <nil key="highlightedColor"/>
-                </label>
-                <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="lSa-Yt-fUS">
-                    <rect key="frame" x="20" y="80" width="374" height="57"/>
+                <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="iM0-uw-TDW">
+                    <rect key="frame" x="0.0" y="0.0" width="414" height="862"/>
+                    <subviews>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4sF-6B-sIy">
+                            <rect key="frame" x="0.0" y="0.0" width="414" height="862"/>
+                            <subviews>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Control type" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zlM-Gi-YjH">
+                                    <rect key="frame" x="30" y="10" width="85" height="18"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                    <color key="textColor" systemColor="secondaryLabelColor"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                                <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="lSa-Yt-fUS">
+                                    <rect key="frame" x="20" y="36" width="374" height="57"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="56" id="xbb-C9-vbt"/>
+                                    </constraints>
+                                    <segments>
+                                        <segment title="" image="CarSliders"/>
+                                        <segment title="" image="CarButtons"/>
+                                    </segments>
+                                    <connections>
+                                        <action selector="onChangeControlType:" destination="-1" eventType="valueChanged" id="Tw4-lF-P3B"/>
+                                    </connections>
+                                </segmentedControl>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Driving" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Rhy-aO-LKt">
+                                    <rect key="frame" x="30" y="108" width="49" height="18"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                    <color key="textColor" systemColor="secondaryLabelColor"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="q30-Tf-Ibo" customClass="ChannelSettingsView" customModule="BLEServo" customModuleProvider="target">
+                                    <rect key="frame" x="20" y="134" width="374" height="180"/>
+                                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" priority="100" constant="180" id="TVB-wr-Rea"/>
+                                    </constraints>
+                                </view>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Steering" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7yY-e8-ZWu">
+                                    <rect key="frame" x="30" y="330" width="58" height="18"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                    <color key="textColor" systemColor="secondaryLabelColor"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RK8-Cf-yS7" customClass="ChannelSettingsView" customModule="BLEServo" customModuleProvider="target">
+                                    <rect key="frame" x="20" y="356" width="374" height="322"/>
+                                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" priority="99" constant="180" id="OHx-DQ-4Ly"/>
+                                    </constraints>
+                                </view>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Configurations" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="F9y-U8-Ogd">
+                                    <rect key="frame" x="30" y="694" width="101" height="18"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                    <color key="textColor" systemColor="secondaryLabelColor"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Nrt-kc-20L">
+                                    <rect key="frame" x="20" y="720" width="374" height="112"/>
+                                    <subviews>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eZH-ku-kHt">
+                                            <rect key="frame" x="20" y="12" width="206" height="33"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                            <state key="normal" title="Restore preset - my RC car">
+                                                <color key="titleColor" systemColor="tintColor"/>
+                                            </state>
+                                            <connections>
+                                                <action selector="onTapRestorePresetMyCar:" destination="-1" eventType="touchUpInside" id="F6h-cG-XYQ"/>
+                                            </connections>
+                                        </button>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="11j-Zi-FoE">
+                                            <rect key="frame" x="20" y="67" width="129" height="33"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                            <state key="normal" title="Reset to defaults"/>
+                                            <connections>
+                                                <action selector="onTapResetToDefaults:" destination="-1" eventType="touchUpInside" id="S8l-0H-Lzy"/>
+                                            </connections>
+                                        </button>
+                                    </subviews>
+                                    <color key="backgroundColor" systemColor="tertiarySystemBackgroundColor"/>
+                                    <constraints>
+                                        <constraint firstItem="eZH-ku-kHt" firstAttribute="top" secondItem="Nrt-kc-20L" secondAttribute="top" constant="12" id="3cq-um-erD"/>
+                                        <constraint firstItem="11j-Zi-FoE" firstAttribute="top" secondItem="eZH-ku-kHt" secondAttribute="bottom" constant="22" id="DNc-Xo-xdG"/>
+                                        <constraint firstAttribute="height" priority="100" constant="100" id="Oh9-Ii-bmO"/>
+                                        <constraint firstItem="11j-Zi-FoE" firstAttribute="leading" secondItem="eZH-ku-kHt" secondAttribute="leading" id="VSM-Mp-t7z"/>
+                                        <constraint firstItem="eZH-ku-kHt" firstAttribute="leading" secondItem="Nrt-kc-20L" secondAttribute="leading" constant="20" id="jgt-hW-6sD"/>
+                                        <constraint firstAttribute="bottom" secondItem="11j-Zi-FoE" secondAttribute="bottom" constant="12" id="pnc-Oo-goT"/>
+                                    </constraints>
+                                    <userDefinedRuntimeAttributes>
+                                        <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
+                                        <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                            <integer key="value" value="12"/>
+                                        </userDefinedRuntimeAttribute>
+                                    </userDefinedRuntimeAttributes>
+                                </view>
+                            </subviews>
+                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <constraints>
+                                <constraint firstItem="7yY-e8-ZWu" firstAttribute="leading" secondItem="zlM-Gi-YjH" secondAttribute="leading" id="2Qb-cs-YFB"/>
+                                <constraint firstItem="Nrt-kc-20L" firstAttribute="top" secondItem="F9y-U8-Ogd" secondAttribute="bottom" constant="8" id="5IO-LJ-xRK"/>
+                                <constraint firstItem="Rhy-aO-LKt" firstAttribute="leading" secondItem="zlM-Gi-YjH" secondAttribute="leading" id="6nI-hB-rzt"/>
+                                <constraint firstAttribute="trailing" secondItem="q30-Tf-Ibo" secondAttribute="trailing" constant="20" id="Ae9-2t-k2p"/>
+                                <constraint firstItem="lSa-Yt-fUS" firstAttribute="leading" secondItem="4sF-6B-sIy" secondAttribute="leading" constant="20" id="BKp-KJ-3ca"/>
+                                <constraint firstAttribute="trailing" secondItem="Nrt-kc-20L" secondAttribute="trailing" constant="20" symbolic="YES" id="Bfu-wX-LWL"/>
+                                <constraint firstItem="RK8-Cf-yS7" firstAttribute="top" secondItem="7yY-e8-ZWu" secondAttribute="bottom" constant="8" id="EKx-KK-rIp"/>
+                                <constraint firstItem="F9y-U8-Ogd" firstAttribute="leading" secondItem="zlM-Gi-YjH" secondAttribute="leading" id="Tc1-9K-yp8"/>
+                                <constraint firstItem="q30-Tf-Ibo" firstAttribute="leading" secondItem="4sF-6B-sIy" secondAttribute="leading" constant="20" id="UVh-A8-xib"/>
+                                <constraint firstAttribute="bottom" secondItem="Nrt-kc-20L" secondAttribute="bottom" constant="30" id="VSm-c2-tvJ"/>
+                                <constraint firstItem="q30-Tf-Ibo" firstAttribute="top" secondItem="Rhy-aO-LKt" secondAttribute="bottom" constant="8" id="W0X-oi-obT"/>
+                                <constraint firstItem="lSa-Yt-fUS" firstAttribute="top" secondItem="zlM-Gi-YjH" secondAttribute="bottom" constant="8" id="W0Y-f2-Bqe"/>
+                                <constraint firstItem="RK8-Cf-yS7" firstAttribute="leading" secondItem="4sF-6B-sIy" secondAttribute="leading" constant="20" id="WH4-Ns-5Nu"/>
+                                <constraint firstItem="zlM-Gi-YjH" firstAttribute="top" secondItem="4sF-6B-sIy" secondAttribute="top" constant="10" id="XaU-th-P42"/>
+                                <constraint firstAttribute="trailing" secondItem="RK8-Cf-yS7" secondAttribute="trailing" constant="20" id="Zr8-Po-h4b"/>
+                                <constraint firstItem="Rhy-aO-LKt" firstAttribute="top" secondItem="lSa-Yt-fUS" secondAttribute="bottom" constant="16" id="eDu-j0-4RE"/>
+                                <constraint firstItem="Nrt-kc-20L" firstAttribute="leading" secondItem="4sF-6B-sIy" secondAttribute="leading" constant="20" symbolic="YES" id="eJ8-bu-ucd"/>
+                                <constraint firstItem="zlM-Gi-YjH" firstAttribute="leading" secondItem="lSa-Yt-fUS" secondAttribute="leading" constant="10" id="nwi-FE-TTN"/>
+                                <constraint firstItem="F9y-U8-Ogd" firstAttribute="top" secondItem="RK8-Cf-yS7" secondAttribute="bottom" constant="16" id="rHj-mX-1e4"/>
+                                <constraint firstAttribute="trailing" secondItem="lSa-Yt-fUS" secondAttribute="trailing" constant="20" id="rza-bV-rHc"/>
+                                <constraint firstItem="7yY-e8-ZWu" firstAttribute="top" secondItem="q30-Tf-Ibo" secondAttribute="bottom" constant="16" id="xlj-oV-dro"/>
+                            </constraints>
+                        </view>
+                    </subviews>
                     <constraints>
-                        <constraint firstAttribute="height" constant="56" id="xbb-C9-vbt"/>
+                        <constraint firstItem="4sF-6B-sIy" firstAttribute="leading" secondItem="iM0-uw-TDW" secondAttribute="leading" id="7Hs-l3-lgs"/>
+                        <constraint firstItem="4sF-6B-sIy" firstAttribute="top" secondItem="iM0-uw-TDW" secondAttribute="top" id="Ity-zH-YUR"/>
+                        <constraint firstItem="4sF-6B-sIy" firstAttribute="centerY" secondItem="iM0-uw-TDW" secondAttribute="centerY" priority="250" id="Q43-u2-Q8y"/>
+                        <constraint firstAttribute="bottom" secondItem="4sF-6B-sIy" secondAttribute="bottom" priority="250" id="Yak-ZS-Qme"/>
+                        <constraint firstItem="4sF-6B-sIy" firstAttribute="centerX" secondItem="iM0-uw-TDW" secondAttribute="centerX" id="cdl-ib-GdD"/>
+                        <constraint firstAttribute="trailing" secondItem="4sF-6B-sIy" secondAttribute="trailing" id="eYm-NP-bqC"/>
                     </constraints>
-                    <segments>
-                        <segment title="" image="CarSliders"/>
-                        <segment title="" image="CarButtons"/>
-                    </segments>
-                    <connections>
-                        <action selector="onChangeControlType:" destination="-1" eventType="valueChanged" id="Tw4-lF-P3B"/>
-                    </connections>
-                </segmentedControl>
+                </scrollView>
             </subviews>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <color key="backgroundColor" systemColor="systemGroupedBackgroundColor"/>
             <constraints>
-                <constraint firstItem="zlM-Gi-YjH" firstAttribute="leading" secondItem="lSa-Yt-fUS" secondAttribute="leading" constant="10" id="0Dn-Yj-YXh"/>
-                <constraint firstItem="zlM-Gi-YjH" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="10" id="0sr-qM-aKK"/>
-                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="lSa-Yt-fUS" secondAttribute="trailing" constant="20" id="FEc-kn-P01"/>
-                <constraint firstItem="lSa-Yt-fUS" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="20" id="ci7-SX-4Qg"/>
-                <constraint firstItem="lSa-Yt-fUS" firstAttribute="top" secondItem="zlM-Gi-YjH" secondAttribute="bottom" constant="8" symbolic="YES" id="zJ7-Zp-qn6"/>
+                <constraint firstItem="iM0-uw-TDW" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="136-Yc-4Me"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="iM0-uw-TDW" secondAttribute="bottom" id="Bvd-vP-BRs"/>
+                <constraint firstItem="iM0-uw-TDW" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="kAh-JJ-dvh"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="iM0-uw-TDW" secondAttribute="trailing" id="pEv-4K-BD3"/>
             </constraints>
             <point key="canvasLocation" x="131.8840579710145" y="77.678571428571431"/>
         </view>
@@ -58,8 +174,17 @@
         <systemColor name="secondaryLabelColor">
             <color red="0.23529411764705882" green="0.23529411764705882" blue="0.2627450980392157" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
         <systemColor name="systemGroupedBackgroundColor">
             <color red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="tertiarySystemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="tintColor">
+            <color red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

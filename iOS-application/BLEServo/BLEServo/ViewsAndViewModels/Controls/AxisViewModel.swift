@@ -46,11 +46,13 @@ class AxisViewModelImpl: AxisViewModel {
     private let model: ServoChannelModel
     private let converter: AxisConverter
     private let animator = ValueAnimator()
+    private let animationSpeed: Float
     private var valueInternal = Float(0)
 
-    init(model: ServoChannelModel, axisName: String, config: AxisOutputConfig) {
+    init(model: ServoChannelModel, axisName: String, config: AxisOutputConfig, animationSpeed: Float) {
         self.model = model
         self.axisName = axisName
+        self.animationSpeed = animationSpeed
         converter = AxisConverter(config)
         connectToModel()
         updateDisplayValue()
@@ -74,7 +76,7 @@ private extension AxisViewModelImpl {
     }
 
     func animateToCenter() {
-        animator.animate(from: value, to: 0, speed: 1) { [weak self] (currentValue) in
+        animator.animate(from: value, to: 0, speed: animationSpeed) { [weak self] (currentValue) in
             guard let self = self else { return }
             self.valueInternal = currentValue
             self.onValueDidChange?(self.value)
