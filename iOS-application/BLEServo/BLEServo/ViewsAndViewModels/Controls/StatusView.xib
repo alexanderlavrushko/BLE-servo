@@ -9,20 +9,9 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
-        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="StatusView" customModule="BLEServo" customModuleProvider="target">
-            <connections>
-                <outlet property="backgroundView" destination="RyV-g6-NTY" id="YJT-BE-4Kw"/>
-                <outlet property="buttonDismissError" destination="2hs-wB-B17" id="r5b-o9-hLG"/>
-                <outlet property="constraintTitleToView" destination="ln7-X7-JOO" id="tAb-Xg-VWP"/>
-                <outlet property="constraintViewToError" destination="LKp-Qc-8Ac" id="WSp-V5-Tnm"/>
-                <outlet property="labelError" destination="gZc-rw-iNW" id="CKi-Wb-p0k"/>
-                <outlet property="labelStatus" destination="0ck-Ng-sx0" id="aGk-x8-QdP"/>
-                <outlet property="labelStatusColor" destination="MBQ-kE-cJs" id="MJG-bG-JUe"/>
-                <outlet property="labelTitle" destination="OUe-y2-abz" id="2HA-Fc-atH"/>
-            </connections>
-        </placeholder>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="StatusView" customModule="BLEServo" customModuleProvider="target"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <view contentMode="scaleToFill" id="iN0-l3-epB">
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="StatusContentView" customModule="BLEServo" customModuleProvider="target">
             <rect key="frame" x="0.0" y="0.0" width="438" height="189"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
@@ -49,7 +38,7 @@
                             </userDefinedRuntimeAttributes>
                         </view>
                     </subviews>
-                    <color key="backgroundColor" systemColor="tertiarySystemBackgroundColor"/>
+                    <color key="backgroundColor" systemColor="secondarySystemGroupedBackgroundColor"/>
                     <constraints>
                         <constraint firstAttribute="height" secondItem="0ck-Ng-sx0" secondAttribute="height" multiplier="2" id="2EN-9r-al4"/>
                         <constraint firstItem="0ck-Ng-sx0" firstAttribute="centerY" secondItem="RyV-g6-NTY" secondAttribute="centerY" id="8di-PE-g6c"/>
@@ -103,6 +92,16 @@
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="RyV-g6-NTY" secondAttribute="bottom" id="oA9-mY-6l7"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <connections>
+                <outlet property="backgroundView" destination="RyV-g6-NTY" id="043-ki-gs3"/>
+                <outlet property="buttonDismissError" destination="2hs-wB-B17" id="dQf-8g-zgB"/>
+                <outlet property="constraintTitleToView" destination="ln7-X7-JOO" id="veM-fC-Sgl"/>
+                <outlet property="constraintViewToError" destination="LKp-Qc-8Ac" id="7W2-Vt-HJg"/>
+                <outlet property="labelError" destination="gZc-rw-iNW" id="NeN-u1-a8j"/>
+                <outlet property="labelStatus" destination="0ck-Ng-sx0" id="Agw-H4-i1i"/>
+                <outlet property="labelStatusColor" destination="MBQ-kE-cJs" id="cWj-Gb-Fhn"/>
+                <outlet property="labelTitle" destination="OUe-y2-abz" id="qmY-c0-Bgq"/>
+            </connections>
             <point key="canvasLocation" x="150.72463768115944" y="-155.02232142857142"/>
         </view>
     </objects>
@@ -110,11 +109,11 @@
         <systemColor name="secondaryLabelColor">
             <color red="0.23529411764705882" green="0.23529411764705882" blue="0.2627450980392157" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
+        <systemColor name="secondarySystemGroupedBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
         <systemColor name="systemYellowColor">
             <color red="1" green="0.80000000000000004" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </systemColor>
-        <systemColor name="tertiarySystemBackgroundColor">
-            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
     </resources>
 </document>

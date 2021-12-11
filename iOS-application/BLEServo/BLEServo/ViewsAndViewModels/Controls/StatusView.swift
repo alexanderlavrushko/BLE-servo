@@ -9,23 +9,15 @@ import UIKit
 
 @IBDesignable
 class StatusView: UIViewWithNib {
-    @IBOutlet weak var labelTitle: UILabel!
-    @IBOutlet weak var constraintTitleToView: NSLayoutConstraint!
-    @IBOutlet weak var backgroundView: UIView!
-    @IBOutlet weak var labelStatus: UILabel!
-    @IBOutlet weak var labelStatusColor: UIView!
-    @IBOutlet weak var constraintViewToError: NSLayoutConstraint!
-    @IBOutlet weak var labelError: UILabel!
-    @IBOutlet weak var buttonDismissError: UIButton!
-
+    var content: StatusContentView { contentView as! StatusContentView }
     var viewModel: StatusViewModel? { didSet { connectToViewModel() } }
 
     override var intrinsicContentSize: CGSize {
         let width = bounds.width
         let height = { () -> CGFloat in
-            var height = labelTitle.intrinsicContentSize.height + constraintTitleToView.constant + backgroundView.intrinsicContentSize.height
-            if !labelError.isHidden {
-                height += constraintViewToError.constant + labelError.intrinsicContentSize.height
+            var height = content.labelTitle.intrinsicContentSize.height + content.constraintTitleToView.constant + content.backgroundView.intrinsicContentSize.height
+            if !content.labelError.isHidden {
+                height += content.constraintViewToError.constant + content.labelError.intrinsicContentSize.height
             }
             return height
         }()
@@ -45,11 +37,11 @@ private extension StatusView {
             return
         }
 
-        viewModel.onStatusDidChange = { [weak self] in self?.labelStatus.text = $0 }
-        labelStatus.text = viewModel.status
+        viewModel.onStatusDidChange = { [weak self] in self?.content.labelStatus.text = $0 }
+        content.labelStatus.text = viewModel.status
 
-        viewModel.onStatusColorDidChange = { [weak self] in self?.labelStatusColor.backgroundColor = $0 }
-        labelStatusColor.backgroundColor = viewModel.statusColor
+        viewModel.onStatusColorDidChange = { [weak self] in self?.content.labelStatusColor.backgroundColor = $0 }
+        content.labelStatusColor.backgroundColor = viewModel.statusColor
 
         viewModel.onErrorTextDidChange = { [weak self] _ in self?.updateErrorText() }
         updateErrorText()
@@ -57,14 +49,25 @@ private extension StatusView {
 
     private func updateErrorText() {
         if let errorText = viewModel?.errorText {
-            labelError.text = errorText
-            labelError.isHidden = false
-            buttonDismissError.isHidden = false
+            content.labelError.text = errorText
+            content.labelError.isHidden = false
+            content.buttonDismissError.isHidden = false
         } else {
-            labelError.text = "No error"
-            labelError.isHidden = true
-            buttonDismissError.isHidden = true
+            content.labelError.text = "No error"
+            content.labelError.isHidden = true
+            content.buttonDismissError.isHidden = true
         }
         invalidateIntrinsicContentSize()
     }
+}
+
+class StatusContentView: UIView {
+    @IBOutlet weak var labelTitle: UILabel!
+    @IBOutlet weak var constraintTitleToView: NSLayoutConstraint!
+    @IBOutlet weak var backgroundView: UIView!
+    @IBOutlet weak var labelStatus: UILabel!
+    @IBOutlet weak var labelStatusColor: UIView!
+    @IBOutlet weak var constraintViewToError: NSLayoutConstraint!
+    @IBOutlet weak var labelError: UILabel!
+    @IBOutlet weak var buttonDismissError: UIButton!
 }

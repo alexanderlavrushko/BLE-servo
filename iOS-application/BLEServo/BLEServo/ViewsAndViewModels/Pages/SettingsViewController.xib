@@ -26,8 +26,8 @@
                 <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="iM0-uw-TDW">
                     <rect key="frame" x="0.0" y="0.0" width="414" height="862"/>
                     <subviews>
-                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4sF-6B-sIy">
-                            <rect key="frame" x="0.0" y="0.0" width="414" height="862"/>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4sF-6B-sIy" userLabel="ContentView">
+                            <rect key="frame" x="0.0" y="0.0" width="414" height="754.5"/>
                             <subviews>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Control type" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zlM-Gi-YjH">
                                     <rect key="frame" x="30" y="10" width="85" height="18"/>
@@ -55,33 +55,31 @@
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="q30-Tf-Ibo" customClass="ChannelSettingsView" customModule="BLEServo" customModuleProvider="target">
-                                    <rect key="frame" x="20" y="134" width="374" height="180"/>
-                                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                    <rect key="frame" x="20" y="134" width="374" height="197.5"/>
                                     <constraints>
                                         <constraint firstAttribute="height" priority="100" constant="180" id="TVB-wr-Rea"/>
                                     </constraints>
                                 </view>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Steering" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7yY-e8-ZWu">
-                                    <rect key="frame" x="30" y="330" width="58" height="18"/>
+                                    <rect key="frame" x="30" y="347.5" width="58" height="18"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                     <color key="textColor" systemColor="secondaryLabelColor"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RK8-Cf-yS7" customClass="ChannelSettingsView" customModule="BLEServo" customModuleProvider="target">
-                                    <rect key="frame" x="20" y="356" width="374" height="322"/>
-                                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                    <rect key="frame" x="20" y="373.5" width="374" height="197"/>
                                     <constraints>
                                         <constraint firstAttribute="height" priority="99" constant="180" id="OHx-DQ-4Ly"/>
                                     </constraints>
                                 </view>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Configurations" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="F9y-U8-Ogd">
-                                    <rect key="frame" x="30" y="694" width="101" height="18"/>
+                                    <rect key="frame" x="30" y="586.5" width="101" height="18"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                     <color key="textColor" systemColor="secondaryLabelColor"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Nrt-kc-20L">
-                                    <rect key="frame" x="20" y="720" width="374" height="112"/>
+                                    <rect key="frame" x="20" y="612.5" width="374" height="112"/>
                                     <subviews>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eZH-ku-kHt">
                                             <rect key="frame" x="20" y="12" width="206" height="33"/>
@@ -104,7 +102,7 @@
                                             </connections>
                                         </button>
                                     </subviews>
-                                    <color key="backgroundColor" systemColor="tertiarySystemBackgroundColor"/>
+                                    <color key="backgroundColor" systemColor="secondarySystemGroupedBackgroundColor"/>
                                     <constraints>
                                         <constraint firstItem="eZH-ku-kHt" firstAttribute="top" secondItem="Nrt-kc-20L" secondAttribute="top" constant="12" id="3cq-um-erD"/>
                                         <constraint firstItem="11j-Zi-FoE" firstAttribute="top" secondItem="eZH-ku-kHt" secondAttribute="bottom" constant="22" id="DNc-Xo-xdG"/>
@@ -174,14 +172,11 @@
         <systemColor name="secondaryLabelColor">
             <color red="0.23529411764705882" green="0.23529411764705882" blue="0.2627450980392157" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
-        <systemColor name="systemBackgroundColor">
+        <systemColor name="secondarySystemGroupedBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
         <systemColor name="systemGroupedBackgroundColor">
             <color red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </systemColor>
-        <systemColor name="tertiarySystemBackgroundColor">
-            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
         <systemColor name="tintColor">
             <color red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

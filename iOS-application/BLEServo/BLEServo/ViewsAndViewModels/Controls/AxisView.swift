@@ -9,20 +9,15 @@ import UIKit
 
 @IBDesignable
 class AxisView: UIViewWithNib {
-    @IBOutlet weak var backgroundView: UIView!
-    @IBOutlet weak var labelName: UILabel!
-    @IBOutlet weak var labelValue: UILabel!
-    @IBOutlet weak var slider: UISlider!
-    @IBOutlet weak var constraintLabelToView: NSLayoutConstraint!
-
+    var content: AxisContentView { contentView as! AxisContentView }
     var viewModel: AxisViewModel? { didSet { connectToViewModel() } }
 
     override var intrinsicContentSize: CGSize {
-        CGSize(width: bounds.width, height: backgroundView.bounds.height + labelName.bounds.height + constraintLabelToView.constant)
+        CGSize(width: bounds.width, height: content.backgroundView.bounds.height + content.labelName.bounds.height + content.constraintLabelToView.constant)
     }
 
     @IBAction func onSliderDidChange(_ sender: Any) {
-        viewModel?.value = slider.value
+        viewModel?.value = content.slider.value
     }
 
     @IBAction func onSliderTouchUp(_ sender: Any) {
@@ -34,17 +29,25 @@ class AxisView: UIViewWithNib {
 private extension AxisView {
     private func connectToViewModel() {
         guard let viewModel = viewModel else {
-            labelValue.text = "disconnected"
+            content.labelValue.text = "disconnected"
             return
         }
-        labelName.text = viewModel.axisName
-        labelValue.text = viewModel.displayValue
+        content.labelName.text = viewModel.axisName
+        content.labelValue.text = viewModel.displayValue
         viewModel.onDisplayValueDidChange = { [weak self] (displayValue: String) in
-            self?.labelValue.text = viewModel.displayValue
+            self?.content.labelValue.text = viewModel.displayValue
         }
-        slider.value = viewModel.value
+        content.slider.value = viewModel.value
         viewModel.onValueDidChange = { [weak self] (value: Float) in
-            self?.slider.value = value
+            self?.content.slider.value = value
         }
     }
+}
+
+class AxisContentView: UIView {
+    @IBOutlet weak var backgroundView: UIView!
+    @IBOutlet weak var labelName: UILabel!
+    @IBOutlet weak var labelValue: UILabel!
+    @IBOutlet weak var slider: UISlider!
+    @IBOutlet weak var constraintLabelToView: NSLayoutConstraint!
 }

@@ -24,7 +24,6 @@
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KLv-66-WJu" customClass="AxisView" customModule="BLEServo" customModuleProvider="target">
                     <rect key="frame" x="20" y="446" width="207" height="112"/>
-                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="112" id="f6R-5d-Xpm"/>
                         <constraint firstAttribute="width" relation="lessThanOrEqual" constant="250" id="wEt-yN-BbW"/>
@@ -32,11 +31,9 @@
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VeT-Yf-G1g" customClass="AxisView" customModule="BLEServo" customModuleProvider="target">
                     <rect key="frame" x="187" y="578" width="207" height="112"/>
-                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2Fa-2w-CUc" customClass="StatusView" customModule="BLEServo" customModuleProvider="target">
                     <rect key="frame" x="20" y="54" width="374" height="70"/>
-                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="70" id="tZ4-Py-3Nc"/>
                     </constraints>
@@ -73,9 +70,6 @@
         </designable>
     </designables>
     <resources>
-        <systemColor name="systemBackgroundColor">
-            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-        </systemColor>
         <systemColor name="systemGroupedBackgroundColor">
             <color red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>

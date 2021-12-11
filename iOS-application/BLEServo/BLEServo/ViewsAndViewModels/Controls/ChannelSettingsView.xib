@@ -9,17 +9,9 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
-        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ChannelSettingsView" customModule="BLEServo" customModuleProvider="target">
-            <connections>
-                <outlet property="textFieldAnimationSpeed" destination="IA0-KS-AhF" id="U8b-33-Plo"/>
-                <outlet property="textFieldChannelIndex" destination="n0U-9o-zTI" id="ZFj-GS-aFi"/>
-                <outlet property="textFieldMappingCenter" destination="AQc-VU-wZE" id="kMr-TH-W28"/>
-                <outlet property="textFieldMappingNegative" destination="5gV-U6-lWa" id="n37-bG-Erc"/>
-                <outlet property="textFieldMappingPositive" destination="7mn-De-Jqc" id="bMm-Wu-Cks"/>
-            </connections>
-        </placeholder>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ChannelSettingsView" customModule="BLEServo" customModuleProvider="target"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <view contentMode="scaleToFill" id="iN0-l3-epB">
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="ChannelSettingsContentView" customModule="BLEServo" customModuleProvider="target">
             <rect key="frame" x="0.0" y="0.0" width="417" height="360"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
@@ -149,7 +141,7 @@
                             <nil key="highlightedColor"/>
                         </label>
                     </subviews>
-                    <color key="backgroundColor" systemColor="tertiarySystemBackgroundColor"/>
+                    <color key="backgroundColor" systemColor="secondarySystemGroupedBackgroundColor"/>
                     <constraints>
                         <constraint firstItem="Nlo-F1-6V1" firstAttribute="top" secondItem="rXF-mC-fhD" secondAttribute="bottom" constant="20" id="2Rd-HN-oYf"/>
                         <constraint firstItem="IA0-KS-AhF" firstAttribute="leading" secondItem="Nlo-F1-6V1" secondAttribute="trailing" constant="20" id="EhO-gL-fAt"/>
@@ -188,6 +180,13 @@
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="9WG-PR-jku" secondAttribute="trailing" id="y83-9V-7bE"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <connections>
+                <outlet property="textFieldAnimationSpeed" destination="IA0-KS-AhF" id="WQc-JJ-LMx"/>
+                <outlet property="textFieldChannelIndex" destination="n0U-9o-zTI" id="j02-gv-V0u"/>
+                <outlet property="textFieldMappingCenter" destination="AQc-VU-wZE" id="qmc-Uf-I6M"/>
+                <outlet property="textFieldMappingNegative" destination="5gV-U6-lWa" id="dsN-45-Ho7"/>
+                <outlet property="textFieldMappingPositive" destination="7mn-De-Jqc" id="RYu-oI-n2f"/>
+            </connections>
             <point key="canvasLocation" x="134.05797101449275" y="-93.75"/>
         </view>
     </objects>
@@ -195,7 +194,7 @@
         <systemColor name="secondaryLabelColor">
             <color red="0.23529411764705882" green="0.23529411764705882" blue="0.2627450980392157" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
-        <systemColor name="tertiarySystemBackgroundColor">
+        <systemColor name="secondarySystemGroupedBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
     </resources>

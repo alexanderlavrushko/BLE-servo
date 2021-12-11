@@ -7,15 +7,11 @@
 
 import UIKit
 
+@IBDesignable
 class ChannelSettingsView: UIViewWithNib {
-    @IBOutlet weak var textFieldMappingNegative: NumericTextField!
-    @IBOutlet weak var textFieldMappingCenter: NumericTextField!
-    @IBOutlet weak var textFieldMappingPositive: NumericTextField!
-    @IBOutlet weak var textFieldChannelIndex: NumericTextField!
-    @IBOutlet weak var textFieldAnimationSpeed: NumericTextField!
-
-    var currentTextField: UITextField?
+    var content: ChannelSettingsContentView { contentView as! ChannelSettingsContentView }
     var viewModel: ChannelSettingsViewModel? { didSet { connectToViewModel() } }
+    var currentTextField: UITextField?
 
     @IBAction func onTextFieldDidEndOnExit(_ sender: UITextField) {
         sender.resignFirstResponder()
@@ -58,10 +54,18 @@ private extension ChannelSettingsView {
 
     func connectToViewModel() {
         guard let vm = viewModel else { return }
-        textFieldMappingNegative.text = vm.updateMappingNegative(wantedValue: nil)
-        textFieldMappingCenter.text = vm.updateMappingCenter(wantedValue: nil)
-        textFieldMappingPositive.text = vm.updateMappingPositive(wantedValue: nil)
-        textFieldChannelIndex.text = vm.updateChannelIndex(wantedValue: nil)
-        textFieldAnimationSpeed.text = vm.updateAnimationSpeed(wantedValue: nil)
+        content.textFieldMappingNegative.text = vm.updateMappingNegative(wantedValue: nil)
+        content.textFieldMappingCenter.text = vm.updateMappingCenter(wantedValue: nil)
+        content.textFieldMappingPositive.text = vm.updateMappingPositive(wantedValue: nil)
+        content.textFieldChannelIndex.text = vm.updateChannelIndex(wantedValue: nil)
+        content.textFieldAnimationSpeed.text = vm.updateAnimationSpeed(wantedValue: nil)
     }
+}
+
+class ChannelSettingsContentView: UIView {
+    @IBOutlet weak var textFieldMappingNegative: NumericTextField!
+    @IBOutlet weak var textFieldMappingCenter: NumericTextField!
+    @IBOutlet weak var textFieldMappingPositive: NumericTextField!
+    @IBOutlet weak var textFieldChannelIndex: NumericTextField!
+    @IBOutlet weak var textFieldAnimationSpeed: NumericTextField!
 }

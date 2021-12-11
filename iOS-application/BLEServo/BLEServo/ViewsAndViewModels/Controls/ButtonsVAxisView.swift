@@ -9,13 +9,11 @@ import UIKit
 
 @IBDesignable
 class ButtonsVAxisView: UIViewWithNib {
-    @IBOutlet weak var stackViewButtons: UIStackView!
-    @IBOutlet weak var axisValueView: AxisRenderValueView!
-
+    var content: ButtonsVAxisContentView { contentView as! ButtonsVAxisContentView }
     var viewModel: ButtonsAxisViewModel? { didSet { connectToViewModel() } }
 
     override var intrinsicContentSize: CGSize {
-        stackViewButtons.intrinsicContentSize
+        content.stackViewButtons.intrinsicContentSize
     }
 
     @IBAction func onButtonUpPress(_ sender: Any) {
@@ -38,12 +36,17 @@ class ButtonsVAxisView: UIViewWithNib {
 private extension ButtonsVAxisView {
     func connectToViewModel() {
         guard let viewModel = viewModel else {
-            axisValueView.axisValue = 0
+            content.axisValueView.axisValue = 0
             return
         }
         viewModel.onValueDidChange = { [weak self] (newValue) in
-            self?.axisValueView.axisValue = newValue
+            self?.content.axisValueView.axisValue = newValue
         }
-        axisValueView.axisValue = viewModel.value
+        content.axisValueView.axisValue = viewModel.value
     }
+}
+
+class ButtonsVAxisContentView: UIView {
+    @IBOutlet weak var stackViewButtons: UIStackView!
+    @IBOutlet weak var axisValueView: AxisRenderValueView!
 }

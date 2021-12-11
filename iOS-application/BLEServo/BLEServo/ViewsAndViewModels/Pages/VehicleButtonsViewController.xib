@@ -24,14 +24,12 @@
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KaG-6x-Oqr" customClass="StatusView" customModule="BLEServo" customModuleProvider="target">
                     <rect key="frame" x="20" y="54" width="374" height="70"/>
-                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="70" id="X4L-L5-IxZ"/>
                     </constraints>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="s0J-K2-DMS" customClass="ButtonsVAxisView" customModule="BLEServo" customModuleProvider="target">
                     <rect key="frame" x="50" y="517" width="83" height="166"/>
-                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     <constraints>
                         <constraint firstAttribute="width" secondItem="s0J-K2-DMS" secondAttribute="height" multiplier="1:2" id="MOe-Ef-HHQ"/>
                         <constraint firstAttribute="width" relation="lessThanOrEqual" constant="120" id="l6e-gZ-HhM"/>
@@ -39,7 +37,6 @@
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yYs-wF-4fc" customClass="ButtonsHAxisView" customModule="BLEServo" customModuleProvider="target">
                     <rect key="frame" x="198.5" y="600" width="165.5" height="83"/>
-                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     <constraints>
                         <constraint firstAttribute="height" relation="lessThanOrEqual" constant="120" id="d0Y-uS-p0a"/>
                         <constraint firstAttribute="width" secondItem="yYs-wF-4fc" secondAttribute="height" multiplier="2:1" id="nKe-hb-PQj"/>
@@ -74,10 +71,12 @@
             <point key="canvasLocation" x="131.8840579710145" y="93.75"/>
         </view>
     </objects>
+    <designables>
+        <designable name="KaG-6x-Oqr">
+            <size key="intrinsicContentSize" width="374" height="47"/>
+        </designable>
+    </designables>
     <resources>
-        <systemColor name="systemBackgroundColor">
-            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-        </systemColor>
         <systemColor name="systemGroupedBackgroundColor">
             <color red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
