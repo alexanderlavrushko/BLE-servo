@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">BLE Servo Android</string>
+    <string name="status_template">Status: %1$s</string>
+    <string name="axis_value_template">Axis=%1$.2f / Servo=%2$d</string>
+</resources>
