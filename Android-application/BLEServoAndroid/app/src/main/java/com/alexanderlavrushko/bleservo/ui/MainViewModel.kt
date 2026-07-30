@@ -35,10 +35,10 @@ data class MainUiState(
 )
 
 class MainViewModel(application: Application) : AndroidViewModel(application), BleServoListener {
-    private val transport = BleServoTransport(application, this)
-
     private val _uiState = MutableStateFlow(MainUiState())
     val uiState: StateFlow<MainUiState> = _uiState
+
+    private val transport = BleServoTransport(application, this)
 
     private var drivingAnimationJob: Job? = null
     private var steeringAnimationJob: Job? = null
