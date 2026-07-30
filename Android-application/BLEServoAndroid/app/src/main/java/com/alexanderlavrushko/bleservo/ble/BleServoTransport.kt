@@ -16,7 +16,7 @@ import android.content.Context
 import android.os.Build
 import android.os.ParcelUuid
 import com.alexanderlavrushko.bleservo.protocol.ServoBleProtocol
-import java.util.ArrayDeque
+import kotlin.collections.ArrayDeque
 
 enum class BleConnectionState {
     BluetoothOff,
