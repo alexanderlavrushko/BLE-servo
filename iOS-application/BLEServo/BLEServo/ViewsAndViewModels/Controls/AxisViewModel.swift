@@ -1,48 +1,22 @@
-//
-//  AxisViewModel.swift
-//  BLEServo
-//
-//  Created by Alexander Lavrushko on 30/10/2021.
-//
+import Observation
 
-import Foundation
-
-/// This protocol defines how View communicates with ViewModel. Just to make the dependency clear.
-protocol AxisViewModel: AnyObject {
-    var axisName: String { get }
-    var value: Float { get set }
-    var onValueDidChange: ((Float) -> Void)? { get set }
-    var displayValue: String { get }
-    var onDisplayValueDidChange: ((String) -> Void)? { get set }
-    func userInteractionDidEnd()
-}
-
-class AxisViewModelImpl: AxisViewModel {
-    // MARK: - AxisViewModel implementation
+@MainActor
+@Observable
+final class AxisViewModelImpl {
     let axisName: String
+    private(set) var displayValue = ""
+
     var value: Float {
         get { valueInternal }
         set {
             animator.stopAnimation()
-            guard newValue != value else { return }
+            guard newValue != valueInternal else { return }
             valueInternal = newValue
             updateDisplayValue()
             writePosition()
         }
     }
-    var onValueDidChange: ((Float) -> Void)?
-    var displayValue: String = "" {
-        didSet {
-            guard displayValue != oldValue else { return }
-            onDisplayValueDidChange?(displayValue)
-        }
-    }
-    var onDisplayValueDidChange: ((String) -> Void)?
-    func userInteractionDidEnd() {
-        animateToCenter()
-    }
 
-    // MARK: - Internal logic
     private let model: ServoChannelModel
     private let converter: AxisConverter
     private let animator = ValueAnimator()
@@ -54,34 +28,30 @@ class AxisViewModelImpl: AxisViewModel {
         self.axisName = axisName
         self.animationSpeed = animationSpeed
         converter = AxisConverter(config)
-        connectToModel()
+        valueInternal = converter.servoToAxis(model.position)
         updateDisplayValue()
         animateToCenter()
     }
-}
 
-private extension AxisViewModelImpl {
-    func connectToModel() {
-        valueInternal = converter.servoToAxis(model.position)
+    func userInteractionDidEnd() {
+        animateToCenter()
     }
 
-    func updateDisplayValue() {
-        let value = round(self.value * 100) / 100
-        let outputValue = converter.axisToServo(self.value)
-        displayValue = "\(value) / \(outputValue)"
+    private func updateDisplayValue() {
+        let axisValue = round(valueInternal * 100) / 100
+        displayValue = "\(axisValue) / \(converter.axisToServo(valueInternal))"
     }
 
-    func writePosition() {
-        model.position = converter.axisToServo(value)
+    private func writePosition() {
+        model.position = converter.axisToServo(valueInternal)
     }
 
-    func animateToCenter() {
-        animator.animate(from: value, to: 0, speed: animationSpeed) { [weak self] (currentValue) in
-            guard let self = self else { return }
-            self.valueInternal = currentValue
-            self.onValueDidChange?(self.value)
-            self.updateDisplayValue()
-            self.writePosition()
+    private func animateToCenter() {
+        animator.animate(from: valueInternal, to: 0, speed: animationSpeed) { [weak self] currentValue in
+            guard let self else { return }
+            valueInternal = currentValue
+            updateDisplayValue()
+            writePosition()
         }
     }
 }

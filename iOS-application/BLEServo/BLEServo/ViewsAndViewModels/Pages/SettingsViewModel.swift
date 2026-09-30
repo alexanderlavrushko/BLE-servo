@@ -1,46 +1,30 @@
-//
-//  SettingsViewModel.swift
-//  BLEServo
-//
-//  Created by Alexander Lavrushko on 08/11/2021.
-//
+import Observation
 
-import UIKit
+@MainActor
+@Observable
+final class SettingsViewModelImpl {
+    var controlTypeIndex: Int
+    private(set) var revision = 0
 
-/// This protocol defines how View communicates with ViewModel. Just to make the dependency clear.
-protocol SettingsViewModel: AnyObject {
-    var controlTypeIndex: Int { get set }
-    var allControlTypeImages: [UIImage] { get }
+    var drivingViewModel: ChannelSettingsViewModelImpl { drivingImpl }
+    var steeringViewModel: ChannelSettingsViewModelImpl { steeringImpl }
 
-    var drivingViewModel: ChannelSettingsViewModel { get }
-    var steeringViewModel: ChannelSettingsViewModel { get }
+    private let model: SettingsModel
+    private let drivingImpl: ChannelSettingsViewModelImpl
+    private let steeringImpl: ChannelSettingsViewModelImpl
 
-    var onNeedToReloadValues: (() -> Void)? { get set }
-    func restorePresetMyCar()
-    func resetToDefaults()
-}
-
-class SettingsViewModelImpl: SettingsViewModel {
-    // MARK: - SettingsViewModel implementation
-    var controlTypeIndex: Int {
-        get {
-            ControlTypeIndex(model.controlType).rawValue
-        }
-        set {
-            guard let index = ControlTypeIndex(rawValue: newValue) else { return }
-            model.controlType = index.controlType
-        }
-    }
-    var allControlTypeImages: [UIImage] {
-        ControlTypeIndex.allCases.map {
-            UIImage(named: $0.imageName) ?? UIImage.actions
-        }
+    init(model: SettingsModel) {
+        self.model = model
+        controlTypeIndex = ControlTypeIndex(model.controlType).rawValue
+        drivingImpl = ChannelSettingsViewModelImpl(model: model.drivingModel)
+        steeringImpl = ChannelSettingsViewModelImpl(model: model.steeringModel)
     }
 
-    var drivingViewModel: ChannelSettingsViewModel { drivingImpl }
-    var steeringViewModel: ChannelSettingsViewModel { steeringImpl }
-
-    var onNeedToReloadValues: (() -> Void)?
+    func updateControlType(_ index: Int) {
+        guard let controlType = ControlTypeIndex(rawValue: index) else { return }
+        controlTypeIndex = index
+        model.controlType = controlType.controlType
+    }
 
     func restorePresetMyCar() {
         model.controlType = .twoHorizontalSliders
@@ -54,23 +38,17 @@ class SettingsViewModelImpl: SettingsViewModel {
             outputConfig: AxisOutputConfig(center: 112, maxNegative: 196, maxPositive: 18),
             animationSpeed: 2
         )
-        onNeedToReloadValues?()
+        reload()
     }
 
     func resetToDefaults() {
         model.resetToDefaults()
-        onNeedToReloadValues?()
+        reload()
     }
 
-    // MARK: - Internal logic
-    private var model: SettingsModel
-    var drivingImpl: ChannelSettingsViewModelImpl
-    var steeringImpl: ChannelSettingsViewModelImpl
-
-    init(model: SettingsModel) {
-        self.model = model
-        drivingImpl = ChannelSettingsViewModelImpl(model: model.drivingModel)
-        steeringImpl = ChannelSettingsViewModelImpl(model: model.steeringModel)
+    private func reload() {
+        controlTypeIndex = ControlTypeIndex(model.controlType).rawValue
+        revision += 1
     }
 }
 
@@ -89,15 +67,6 @@ private enum ControlTypeIndex: Int, CaseIterable {
         switch self {
         case .sliders: return .twoHorizontalSliders
         case .buttons: return .fourButtons
-        }
-    }
-
-    var imageName: String {
-        switch self {
-        case .sliders:
-            return "CarSliders"
-        case .buttons:
-            return "CarButtons"
         }
     }
 }

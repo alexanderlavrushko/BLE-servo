@@ -1,69 +1,71 @@
-//
-//  ServoControlCenter.swift
-//  BLEServo
-//
-//  Created by Alexander Lavrushko on 01/11/2021.
-//
+import Observation
+import SwiftUI
 
-import UIKit
+@MainActor
+@Observable
+final class ServoControlCenter {
+    let settingsModel: SettingsModel
+    let settingsViewModel: SettingsViewModelImpl
+    let ble: BLEServoAdapter
 
-class ServoControlCenter {
-    // MARK: - Singleton management
-    static var instance: ServoControlCenter?
-
-    private init() {
-        servoModel = BLEServo()
-        settingsModel = SettingsModelImpl()
+    init() {
+        let settingsModel = SettingsModelImpl()
+        self.settingsModel = settingsModel
+        settingsViewModel = SettingsViewModelImpl(model: settingsModel)
+        ble = BLEServoAdapter(model: BLEServo())
     }
 
-    static func create() {
-        guard instance == nil else { return }
-        instance = ServoControlCenter()
+    func makeTwoAxisViewModel() -> VehicleTwoAxisViewModelImpl {
+        VehicleTwoAxisViewModelImpl(
+            model: ble,
+            driving: settingsModel.drivingModel.data,
+            steering: settingsModel.steeringModel.data
+        )
     }
 
-    static func destroy() {
-        instance = nil
-    }
-
-    // MARK: - Internal logic
-    private let servoModel: ServoModel
-    private let settingsModel: SettingsModel
-
-    func takeControl() -> UIViewController {
-        switch settingsModel.controlType {
-        case .twoHorizontalSliders:
-            return takeControlWithAxis()
-        case .fourButtons:
-            return takeControlWithButtons()
-        }
-    }
-
-    func makeSettingsViewController(onDismiss: @escaping (() -> Void)) -> UIViewController {
-        let settingsVC = SettingsViewController.loadFromNib()
-        settingsVC.viewModel = SettingsViewModelImpl(model: settingsModel)
-        settingsVC.onDismiss = onDismiss
-        return settingsVC
+    func makeButtonsViewModel() -> VehicleButtonsViewModelImpl {
+        VehicleButtonsViewModelImpl(
+            model: ble,
+            driving: settingsModel.drivingModel.data,
+            steering: settingsModel.steeringModel.data
+        )
     }
 }
 
-private extension ServoControlCenter {
-    func takeControlWithAxis() -> UIViewController {
-        let vc = VehicleTwoAxisViewController.loadFromNib()
-        vc.viewModel = VehicleTwoAxisViewModelImpl(
-            model: servoModel,
-            driving: settingsModel.drivingModel.data,
-            steering: settingsModel.steeringModel.data
-        )
-        return vc
+@MainActor
+@Observable
+final class BLEServoAdapter {
+    private let model: BLEServo
+
+    var channels: [ServoChannelModel]
+    var isConnected: Bool
+    var statusStr: String
+    var errorText: String?
+
+
+    init(model: BLEServo) {
+        self.model = model
+        channels = model.channels
+        isConnected = model.isConnected
+        statusStr = model.statusStr
+
+        model.onChannelsDidChange = { [weak self] _ in
+            Task { @MainActor [weak self] in self?.refresh() }
+        }
+        model.onIsConnectedDidChange = { [weak self] _ in
+            Task { @MainActor [weak self] in self?.refresh() }
+        }
+        model.onStatusStrDidChange = { [weak self] _ in
+            Task { @MainActor [weak self] in self?.refresh() }
+        }
+        model.onError = { [weak self] error in
+            Task { @MainActor [weak self] in self?.errorText = error }
+        }
     }
 
-    func takeControlWithButtons() -> UIViewController {
-        let vc = VehicleButtonsViewController.loadFromNib()
-        vc.viewModel = VehicleButtonsViewModelImpl(
-            model: servoModel,
-            driving: settingsModel.drivingModel.data,
-            steering: settingsModel.steeringModel.data
-        )
-        return vc
+    private func refresh() {
+        channels = model.channels
+        isConnected = model.isConnected
+        statusStr = model.statusStr
     }
 }
