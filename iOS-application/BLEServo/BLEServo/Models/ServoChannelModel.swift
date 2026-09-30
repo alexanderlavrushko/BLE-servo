@@ -7,7 +7,8 @@
 
 import Foundation
 
-class ServoChannelModelImpl: ServoChannelModel {
+// Position updates and their BLE write callback are serialized on the main queue.
+class ServoChannelModelImpl: ServoChannelModel, @unchecked Sendable {
     // MARK: - ServoChannelModel implementation
     var position: UInt8 {
         get { positionInternal }

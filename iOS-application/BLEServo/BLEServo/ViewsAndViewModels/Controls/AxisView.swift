@@ -30,7 +30,7 @@ struct AxisView: View {
             .padding(.top, 12)
             .frame(height: 94)
             .frame(maxWidth: .infinity)
-            .background(.secondarySystemGroupedBackground, in: RoundedRectangle(cornerRadius: 12))
+            .background(Color(.secondarySystemGroupedBackground), in: RoundedRectangle(cornerRadius: 12))
         }
     }
 }

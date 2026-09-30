@@ -38,6 +38,7 @@ final class BLEServoAdapter {
     private let model: BLEServo
 
     var channels: [ServoChannelModel]
+    private(set) var channelsRevision = 0
     var isConnected: Bool
     var statusStr: String
     var errorText: String?
@@ -50,21 +51,26 @@ final class BLEServoAdapter {
         statusStr = model.statusStr
 
         model.onChannelsDidChange = { [weak self] _ in
-            Task { @MainActor [weak self] in self?.refresh() }
+            Task { @MainActor [weak self] in self?.refreshChannels() }
         }
         model.onIsConnectedDidChange = { [weak self] _ in
-            Task { @MainActor [weak self] in self?.refresh() }
+            Task { @MainActor [weak self] in self?.refreshStatus() }
         }
         model.onStatusStrDidChange = { [weak self] _ in
-            Task { @MainActor [weak self] in self?.refresh() }
+            Task { @MainActor [weak self] in self?.refreshStatus() }
         }
         model.onError = { [weak self] error in
             Task { @MainActor [weak self] in self?.errorText = error }
         }
     }
 
-    private func refresh() {
+    private func refreshChannels() {
         channels = model.channels
+        channelsRevision += 1
+        refreshStatus()
+    }
+
+    private func refreshStatus() {
         isConnected = model.isConnected
         statusStr = model.statusStr
     }

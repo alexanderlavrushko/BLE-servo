@@ -26,7 +26,7 @@ struct VehicleButtonsView: View {
             }
             .padding(20)
         }
-        .onChange(of: controlCenter.ble.channels.count) { _, _ in
+        .onChange(of: controlCenter.ble.channelsRevision) { _, _ in
             viewModel.channelsDidChange()
         }
     }

@@ -18,7 +18,8 @@ enum BLEConnectivityState: String {
     var humanReadableString: String { rawValue }
 }
 
-class BLEServo: NSObject, ServoModel, StatusModel {
+// CoreBluetooth callbacks use the main queue; SwiftUI-facing access is isolated to MainActor.
+class BLEServo: NSObject, ServoModel, StatusModel, @unchecked Sendable {
     // MARK: - ServoModel implementation
     var statusModel: StatusModel { self }
 

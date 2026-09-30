@@ -43,6 +43,21 @@ struct DirectionButton: View {
                 isPressed = pressing
                 if pressing { press() } else { release() }
             }, perform: {})
+            .accessibilityLabel(accessibilityName)
             .accessibilityAddTraits(.isButton)
+            .accessibilityAction {
+                press()
+                release()
+            }
+    }
+
+    private var accessibilityName: String {
+        switch symbol {
+        case "arrow.left.circle": return "Left"
+        case "arrow.right.circle": return "Right"
+        case "arrow.up.circle": return "Up"
+        case "arrow.down.circle": return "Down"
+        default: return "Direction"
+        }
     }
 }
