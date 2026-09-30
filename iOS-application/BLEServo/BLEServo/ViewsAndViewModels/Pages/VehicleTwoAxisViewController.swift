@@ -1,35 +1,30 @@
-//
-//  VehicleTwoAxisViewController.swift
-//  BLEServo
-//
-//  Created by Alexander Lavrushko on 01/11/2021.
-//
+import SwiftUI
 
-import UIKit
+struct VehicleTwoAxisView: View {
+    let controlCenter: ServoControlCenter
+    @State private var viewModel: VehicleTwoAxisViewModelImpl
 
-class VehicleTwoAxisViewController: UIViewController {
-    @IBOutlet weak var statusView: StatusView!
-    @IBOutlet weak var axisViewDriving: AxisView!
-    @IBOutlet weak var axisViewSteering: AxisView!
-
-    var viewModel: VehicleTwoAxisViewModel? { didSet { connectToViewModel() } }
-
-    func connectToViewModel() {
-        statusView?.viewModel = viewModel?.statusViewModel
-        
-        axisViewDriving?.viewModel = viewModel?.drivingViewModel
-        viewModel?.onDrivingViewModelDidChange = { [weak self] (driving) in
-            self?.axisViewDriving?.viewModel = driving
-        }
-
-        axisViewSteering?.viewModel = viewModel?.steeringViewModel
-        viewModel?.onSteeringViewModelDidChange = { [weak self] (steering) in
-            self?.axisViewSteering?.viewModel = steering
-        }
+    init(controlCenter: ServoControlCenter) {
+        self.controlCenter = controlCenter
+        _viewModel = State(initialValue: controlCenter.makeTwoAxisViewModel())
     }
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        connectToViewModel()
+    var body: some View {
+        GeometryReader { geometry in
+            VStack(alignment: .leading) {
+                StatusView(viewModel: viewModel.statusViewModel)
+                Spacer(minLength: 20)
+                AxisView(viewModel: viewModel.drivingViewModel)
+                    .frame(width: min(geometry.size.width * 0.5, 250), height: 112)
+                AxisView(viewModel: viewModel.steeringViewModel)
+                    .frame(width: min(geometry.size.width * 0.5, 250), height: 112)
+                    .frame(maxWidth: .infinity, alignment: .trailing)
+                Spacer(minLength: 20)
+            }
+            .padding(20)
+        }
+        .onChange(of: controlCenter.ble.channels.count) { _, _ in
+            viewModel.channelsDidChange()
+        }
     }
 }

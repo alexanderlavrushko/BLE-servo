@@ -1,35 +1,33 @@
-//
-//  VehicleButtonsViewController.swift
-//  BLEServo
-//
-//  Created by Alexander Lavrushko on 03/11/2021.
-//
+import SwiftUI
 
-import UIKit
+struct VehicleButtonsView: View {
+    let controlCenter: ServoControlCenter
+    @State private var viewModel: VehicleButtonsViewModelImpl
 
-class VehicleButtonsViewController: UIViewController {
-    @IBOutlet weak var statusView: StatusView!
-    @IBOutlet weak var axisViewDriving: ButtonsVAxisView!
-    @IBOutlet weak var axisViewSteering: ButtonsHAxisView!
-
-    var viewModel: VehicleButtonsViewModel? { didSet { connectToViewModel() } }
-
-    func connectToViewModel() {
-        statusView?.viewModel = viewModel?.statusViewModel
-
-        axisViewDriving?.viewModel = viewModel?.drivingViewModel
-        viewModel?.onDrivingViewModelDidChange = { [weak self] (driving) in
-            self?.axisViewDriving?.viewModel = driving
-        }
-
-        axisViewSteering?.viewModel = viewModel?.steeringViewModel
-        viewModel?.onSteeringViewModelDidChange = { [weak self] (steering) in
-            self?.axisViewSteering?.viewModel = steering
-        }
+    init(controlCenter: ServoControlCenter) {
+        self.controlCenter = controlCenter
+        _viewModel = State(initialValue: controlCenter.makeButtonsViewModel())
     }
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        connectToViewModel()
+    var body: some View {
+        GeometryReader { geometry in
+            let controlSize = min(geometry.size.width * 0.4, min(geometry.size.height * 0.45, 220))
+            VStack {
+                StatusView(viewModel: viewModel.statusViewModel)
+                Spacer(minLength: 10)
+                HStack(alignment: .bottom) {
+                    ButtonsVAxisView(viewModel: viewModel.drivingViewModel)
+                        .frame(width: controlSize / 2, height: controlSize)
+                    Spacer(minLength: 0)
+                    ButtonsHAxisView(viewModel: viewModel.steeringViewModel)
+                        .frame(width: controlSize, height: controlSize / 2)
+                }
+                Spacer(minLength: 0)
+            }
+            .padding(20)
+        }
+        .onChange(of: controlCenter.ble.channels.count) { _, _ in
+            viewModel.channelsDidChange()
+        }
     }
 }

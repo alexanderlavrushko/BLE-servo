@@ -1,53 +1,36 @@
-//
-//  AxisView.swift
-//  BLEServo
-//
-//  Created by Alexander Lavrushko on 30/10/2021.
-//
+import SwiftUI
 
-import UIKit
+struct AxisView: View {
+    @Bindable var viewModel: AxisViewModelImpl
 
-@IBDesignable
-class AxisView: UIViewWithNib {
-    var content: AxisContentView { contentView as! AxisContentView }
-    var viewModel: AxisViewModel? { didSet { connectToViewModel() } }
+    var body: some View {
+        VStack(spacing: 4) {
+            Text(viewModel.axisName)
+                .font(.system(size: 15))
+                .foregroundStyle(.secondary)
+                .frame(maxWidth: .infinity, alignment: .leading)
+                .padding(.leading, 15)
 
-    override var intrinsicContentSize: CGSize {
-        CGSize(width: bounds.width, height: content.backgroundView.bounds.height + content.labelName.bounds.height + content.constraintLabelToView.constant)
-    }
-
-    @IBAction func onSliderDidChange(_ sender: Any) {
-        viewModel?.value = content.slider.value
-    }
-
-    @IBAction func onSliderTouchUp(_ sender: Any) {
-        viewModel?.userInteractionDidEnd()
-    }
-}
-
-// MARK: - Private logic
-private extension AxisView {
-    private func connectToViewModel() {
-        guard let viewModel = viewModel else {
-            content.labelValue.text = "disconnected"
-            return
-        }
-        content.labelName.text = viewModel.axisName
-        content.labelValue.text = viewModel.displayValue
-        viewModel.onDisplayValueDidChange = { [weak self] (displayValue: String) in
-            self?.content.labelValue.text = viewModel.displayValue
-        }
-        content.slider.value = viewModel.value
-        viewModel.onValueDidChange = { [weak self] (value: Float) in
-            self?.content.slider.value = value
+            VStack(spacing: 8) {
+                Text(viewModel.displayValue)
+                    .font(.system(size: 17))
+                Slider(
+                    value: Binding(
+                        get: { viewModel.value },
+                        set: { viewModel.value = $0 }
+                    ),
+                    in: -1...1,
+                    onEditingChanged: { isEditing in
+                        if !isEditing { viewModel.userInteractionDidEnd() }
+                    }
+                )
+                .padding(.horizontal, 10)
+                .padding(.bottom, 10)
+            }
+            .padding(.top, 12)
+            .frame(height: 94)
+            .frame(maxWidth: .infinity)
+            .background(.secondarySystemGroupedBackground, in: RoundedRectangle(cornerRadius: 12))
         }
     }
-}
-
-class AxisContentView: UIView {
-    @IBOutlet weak var backgroundView: UIView!
-    @IBOutlet weak var labelName: UILabel!
-    @IBOutlet weak var labelValue: UILabel!
-    @IBOutlet weak var slider: UISlider!
-    @IBOutlet weak var constraintLabelToView: NSLayoutConstraint!
 }

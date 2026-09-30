@@ -1,52 +1,27 @@
-//
-//  ButtonsVAxisView.swift
-//  BLEServo
-//
-//  Created by Alexander Lavrushko on 03/11/2021.
-//
+import SwiftUI
 
-import UIKit
+struct ButtonsVAxisView: View {
+    @Bindable var viewModel: ButtonsAxisViewModelImpl
 
-@IBDesignable
-class ButtonsVAxisView: UIViewWithNib {
-    var content: ButtonsVAxisContentView { contentView as! ButtonsVAxisContentView }
-    var viewModel: ButtonsAxisViewModel? { didSet { connectToViewModel() } }
+    var body: some View {
+        HStack(spacing: 8) {
+            VStack(spacing: 0) {
+                DirectionButton(symbol: "arrow.up.circle") {
+                    viewModel.positiveButtonDidPress()
+                } release: {
+                    viewModel.positiveButtonDidRelease()
+                }
+                DirectionButton(symbol: "arrow.down.circle") {
+                    viewModel.negativeButtonDidPress()
+                } release: {
+                    viewModel.negativeButtonDidRelease()
+                }
+            }
+            .aspectRatio(0.5, contentMode: .fit)
 
-    override var intrinsicContentSize: CGSize {
-        content.stackViewButtons.intrinsicContentSize
-    }
-
-    @IBAction func onButtonUpPress(_ sender: Any) {
-        viewModel?.positiveButtonDidPress()
-    }
-
-    @IBAction func onButtonUpRelease(_ sender: Any) {
-        viewModel?.positiveButtonDidRelease()
-    }
-
-    @IBAction func onButtonDownPress(_ sender: Any) {
-        viewModel?.negativeButtonDidPress()
-    }
-
-    @IBAction func onButtonDownRelease(_ sender: Any) {
-        viewModel?.negativeButtonDidRelease()
-    }
-}
-
-private extension ButtonsVAxisView {
-    func connectToViewModel() {
-        guard let viewModel = viewModel else {
-            content.axisValueView.axisValue = 0
-            return
+            AxisRenderValueView(axisValue: viewModel.value, isVertical: true)
+                .frame(width: 8)
         }
-        viewModel.onValueDidChange = { [weak self] (newValue) in
-            self?.content.axisValueView.axisValue = newValue
-        }
-        content.axisValueView.axisValue = viewModel.value
+        .aspectRatio(0.5, contentMode: .fit)
     }
-}
-
-class ButtonsVAxisContentView: UIView {
-    @IBOutlet weak var stackViewButtons: UIStackView!
-    @IBOutlet weak var axisValueView: AxisRenderValueView!
 }

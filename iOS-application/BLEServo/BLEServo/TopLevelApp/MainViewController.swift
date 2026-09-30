@@ -1,53 +1,32 @@
-//
-//  MainViewController.swift
-//  BLEServo
-//
-//  Created by Alexander Lavrushko on 21/08/2021.
-//
+import SwiftUI
 
-import UIKit
+struct MainView: View {
+    let controlCenter: ServoControlCenter
 
-class MainViewController: UIViewController {
-
-    var contentViewController: UIViewController?
-    @IBOutlet weak var labelState: UILabel!
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        reloadContent()
-    }
-
-    @IBAction func onTapSettings(_ sender: Any) {
-        guard let center = ServoControlCenter.instance else { return }
-        let settingsVC = center.makeSettingsViewController { [weak self] in
-            self?.reloadContent()
+    var body: some View {
+        NavigationStack {
+            Group {
+                if controlCenter.settingsViewModel.controlTypeIndex == 0 {
+                    VehicleTwoAxisView(controlCenter: controlCenter)
+                } else {
+                    VehicleButtonsView(controlCenter: controlCenter)
+                }
+            }
+            .background(Color(.systemGroupedBackground).ignoresSafeArea())
+            .navigationTitle("BLE Servo")
+            .toolbar {
+                ToolbarItem(placement: .topBarTrailing) {
+                    NavigationLink {
+                        SettingsView(viewModel: controlCenter.settingsViewModel)
+                            .navigationTitle("Settings")
+                            .navigationBarTitleDisplayMode(.inline)
+                    } label: {
+                        Image(systemName: "gear")
+                            .font(.system(size: 18))
+                    }
+                    .accessibilityLabel("Settings")
+                }
+            }
         }
-        show(settingsVC, sender: self)
-    }
-}
-
-private extension MainViewController {
-    func reloadContent() {
-        removeContentController()
-        guard let center = ServoControlCenter.instance else {
-            labelState.text = "Error: ServoControlCenter not initialized"
-            return
-        }
-        addContentController(center.takeControl())
-    }
-
-    func addContentController(_ vc: UIViewController) {
-        addChild(vc)
-        view.addSubview(vc.view)
-        vc.didMove(toParent: self)
-        vc.view.constraintToSuperview()
-        contentViewController = vc
-    }
-
-    func removeContentController() {
-        guard let vc = contentViewController else { return }
-        vc.willMove(toParent: nil)
-        vc.view.removeFromSuperview()
-        vc.removeFromParent()
     }
 }

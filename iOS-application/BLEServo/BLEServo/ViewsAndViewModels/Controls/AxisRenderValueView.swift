@@ -1,27 +1,23 @@
-//
-//  AxisRenderValueView.swift
-//  BLEServo
-//
-//  Created by Alexander Lavrushko on 05/11/2021.
-//
+import SwiftUI
 
-import UIKit
+struct AxisRenderValueView: View {
+    let axisValue: Float
+    let isVertical: Bool
 
-class AxisRenderValueView: UIView {
-    var axisValue = Float(0) {
-        didSet {
-            setNeedsDisplay()
+    var body: some View {
+        GeometryReader { geometry in
+            let extent = (isVertical ? geometry.size.height : geometry.size.width) * CGFloat(abs(axisValue)) / 2
+            RoundedRectangle(cornerRadius: 2)
+                .fill(.green)
+                .frame(
+                    width: isVertical ? geometry.size.width : extent,
+                    height: isVertical ? extent : geometry.size.height
+                )
+                .position(
+                    x: isVertical ? geometry.size.width / 2 : geometry.size.width / 2 + CGFloat(axisValue) * geometry.size.width / 4,
+                    y: isVertical ? geometry.size.height / 2 - CGFloat(axisValue) * geometry.size.height / 4 : geometry.size.height / 2
+                )
         }
-    }
-    var color = UIColor.systemGreen
-    var cornerRedius = CGFloat(2)
-
-    private let viewModel = AxisRenderValueViewModel()
-
-    override func draw(_ rect: CGRect) {
-        let displayRect = viewModel.computeRect(axisValue: axisValue, parentRect: rect)
-        color.setFill()
-        let roundedRect = UIBezierPath(roundedRect: displayRect, cornerRadius: cornerRedius)
-        roundedRect.fill()
+        .accessibilityHidden(true)
     }
 }
