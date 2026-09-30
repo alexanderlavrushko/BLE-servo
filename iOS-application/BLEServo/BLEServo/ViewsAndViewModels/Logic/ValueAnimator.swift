@@ -21,7 +21,11 @@ final class ValueAnimator {
         wantedValue = to
         self.speed = speed
         update = block
-        timer = Timer.scheduledTimer(withTimeInterval: timeInterval, repeats: true) { [weak self] _ in
+        timer = Timer.scheduledTimer(withTimeInterval: timeInterval, repeats: true) { [weak self] timer in
+            guard self != nil else {
+                timer.invalidate()
+                return
+            }
             Task { @MainActor [weak self] in self?.advance() }
         }
     }

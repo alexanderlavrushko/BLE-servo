@@ -2,6 +2,7 @@ import SwiftUI
 
 struct SettingsView: View {
     @Bindable var viewModel: SettingsViewModelImpl
+    let onDismiss: () -> Void
 
     var body: some View {
         ScrollView {
@@ -45,6 +46,7 @@ struct SettingsView: View {
             .id(viewModel.revision)
         }
         .background(Color(.systemGroupedBackground))
+        .onDisappear(perform: onDismiss)
     }
 
     private func sectionLabel(_ title: String) -> some View {

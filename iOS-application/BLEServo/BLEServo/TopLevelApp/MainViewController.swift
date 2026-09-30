@@ -12,12 +12,16 @@ struct MainView: View {
                     VehicleButtonsView(controlCenter: controlCenter)
                 }
             }
+            .id(controlCenter.settingsDismissalRevision)
             .background(Color(.systemGroupedBackground).ignoresSafeArea())
             .navigationTitle("BLE Servo")
             .toolbar {
                 ToolbarItem(placement: .topBarTrailing) {
                     NavigationLink {
-                        SettingsView(viewModel: controlCenter.settingsViewModel)
+                        SettingsView(
+                            viewModel: controlCenter.settingsViewModel,
+                            onDismiss: { controlCenter.settingsDidDismiss() }
+                        )
                             .navigationTitle("Settings")
                             .navigationBarTitleDisplayMode(.inline)
                     } label: {

@@ -34,7 +34,7 @@ BLEServoApp (SwiftUI App)
       -> SettingsModelImpl (UserDefaults persistence)
 ```
 
-`ServoControlCenter` is constructed once by the app and passed into the root view. It owns the settings model, settings view model, and BLE adapter, and creates control-mode view models. The adapter retains the delegate-driven BLE implementation as its source of truth; callback events refresh adapter properties that SwiftUI observes.
+`ServoControlCenter` is constructed once by the app and passed into the root view. It owns the settings model, settings view model, and BLE adapter, and creates control-mode view models. When Settings closes, a revision change recreates the active control view so new channel, mapping, and animation settings take effect immediately. The adapter retains the delegate-driven BLE implementation as its source of truth; callback events refresh adapter properties that SwiftUI observes.
 
 ## Files and responsibilities
 
